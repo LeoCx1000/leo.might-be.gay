@@ -1,8 +1,9 @@
 import aiohttp
-from typing import TYPE_CHECKING, TypeAlias
+from typing import TYPE_CHECKING
 from contextlib import asynccontextmanager
-from litestar import get, Request, Response, MediaType
+from litestar import get, Request, Response
 from litestar.response import Redirect
+from routes.files import render_code_block
 
 from config import LASTFM_API_KEY
 
@@ -58,7 +59,7 @@ def handle_404(request: Request, exc: Exception) -> Response:
 
 
 app = Litestar(
-    route_handlers=[last_fm_favourite, redirect_to_song],
+    route_handlers=[last_fm_favourite, redirect_to_song, render_code_block],
     lifespan=[lifespan],
     exception_handlers={404: handle_404},
 )

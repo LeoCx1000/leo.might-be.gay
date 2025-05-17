@@ -75,7 +75,7 @@ async def currently_playing(request: Request, user_id: int) -> Redirect:
 
     if status == 404:
         return Redirect(
-            "https://img.shields.io/badge/Not listening to anything.-252525?style=flat&logo=spotify"
+            "https://img.shields.io/badge/Not listening to anything-252525?style=flat&logo=spotify"
         )
     track_name = obsession["title"]
     artist = obsession["artist"]

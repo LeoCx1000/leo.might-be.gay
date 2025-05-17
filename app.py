@@ -89,7 +89,7 @@ async def redirect_to_playing(request: Request, user_id: int) -> Response:
     status, obsession = await request_playing(request.app, user_id)
     if status == 404:
         return Response(
-            "Obsession not set. Please join our discord server so our bot can see you. https://discord.gg/TdRfGKg8Wh",
+            "Please join our discord server so our bot can see your Discord Spotify activity. https://discord.gg/TdRfGKg8Wh",
             media_type=MediaType.TEXT,
         )
     return Redirect(OPEN_URL.format(obsession["track_id"]))

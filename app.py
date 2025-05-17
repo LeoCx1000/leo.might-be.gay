@@ -52,7 +52,7 @@ async def last_fm_favourite(request: Request, user_id: int) -> Redirect:
             "https://img.shields.io/badge/No obsession set.-252525?style=flat&logo=spotify"
         )
     track_name = obsession["title"]
-    artist = obsession["title"]
+    artist = obsession["artist"]
     return Redirect(
         f"https://img.shields.io/badge/Current_Favourite: {badge_quote(track_name)} by {badge_quote(artist)}-252525?style=flat&logo=spotify"
     )
@@ -78,7 +78,7 @@ async def currently_playing(request: Request, user_id: int) -> Redirect:
             "https://img.shields.io/badge/Not listening to anything.-252525?style=flat&logo=spotify"
         )
     track_name = obsession["title"]
-    artist = obsession["title"]
+    artist = obsession["artist"]
     return Redirect(
         f"https://img.shields.io/badge/Listening to {badge_quote(track_name)} by {badge_quote(artist)}-252525?style=flat&logo=spotify"
     )

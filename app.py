@@ -27,14 +27,14 @@ OPEN_URL = "https://open.spotify.com/track/{0}"
 
 async def request_obsession(app: Litestar | _Litestar, user_id: int):
     async with app.state.session.get(
-        f"http://localhost:5716/obsession/{user_id}"
+        f"http://localhost:8716/obsession/{user_id}"
     ) as resp:
         return resp.status, await resp.json()
 
 
 async def request_playing(app: Litestar | _Litestar, user_id: int):
     async with app.state.session.get(
-        f"http://localhost:5716/spotify/{user_id}"
+        f"http://localhost:8716/spotify/{user_id}"
     ) as resp:
         return resp.status, await resp.json()
 

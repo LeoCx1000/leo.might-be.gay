@@ -58,7 +58,7 @@ async def last_fm_favourite(request: Request, user_id: int) -> Redirect:
     )
 
 
-@get("/obsession/{user_id:int}")
+@get("/obsession/{user_id:int}/redirect")
 async def redirect_to_song(request: Request, user_id: int) -> Response:
     status, obsession = await request_obsession(request.app, user_id)
     if status == 404:
@@ -84,7 +84,7 @@ async def currently_playing(request: Request, user_id: int) -> Redirect:
     )
 
 
-@get("/listening/{user_id:int}")
+@get("/listening/{user_id:int}/redirect")
 async def redirect_to_playing(request: Request, user_id: int) -> Response:
     status, obsession = await request_playing(request.app, user_id)
     if status == 404:

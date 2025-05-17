@@ -109,7 +109,13 @@ def handle_404(request: Request, exc: Exception) -> Response:
 
 
 app = Litestar(
-    route_handlers=[last_fm_favourite, redirect_to_song, render_code_block],
+    route_handlers=[
+        last_fm_favourite,
+        redirect_to_song,
+        currently_playing,
+        redirect_to_playing,
+        render_code_block,
+    ],
     lifespan=[lifespan],
     exception_handlers={404: handle_404},
 )

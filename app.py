@@ -43,7 +43,7 @@ def badge_quote(string: str) -> str:
     return urllib.parse.quote(string).replace("-", "--").replace("_", "__")
 
 
-@get("/obsession/{user_id:int}.png")
+@get("/obsession/{user_id:int}/image")
 async def last_fm_favourite(request: Request, user_id: int) -> Redirect:
     status, obsession = await request_obsession(request.app, user_id)
 
@@ -69,7 +69,7 @@ async def redirect_to_song(request: Request, user_id: int) -> Response:
     return Redirect(OPEN_URL.format(obsession["track_id"]))
 
 
-@get("/listening/{user_id:int}.png")
+@get("/listening/{user_id:int}/image")
 async def currently_playing(request: Request, user_id: int) -> Redirect:
     status, obsession = await request_playing(request.app, user_id)
 

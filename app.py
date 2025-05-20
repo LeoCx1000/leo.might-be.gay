@@ -1,121 +1,95 @@
-import urllib.parse
-import aiohttp
-from typing import TYPE_CHECKING, Literal
 from contextlib import asynccontextmanager
-from litestar import get, Request, Response, MediaType
+from pathlib import Path
+from typing import Any, Mapping, NamedTuple, Literal
+
+import aiohttp
+from litestar import Litestar, MediaType, Request, Response, get
+
+from litestar.contrib.jinja import JinjaTemplateEngine
 from litestar.response import Redirect
-from routes.files import render_code_block
+from litestar.static_files import StaticFilesConfig
+from litestar.template.config import TemplateConfig
 
-from config import LASTFM_API_KEY
+from routes import files, frontend, music_badges
 
-LASTFM_API_URL = "http://ws.audioscrobbler.com/2.0/"
-
-if TYPE_CHECKING:
-    from litestar import Litestar as _Litestar
-
-    class Litestar(_Litestar):
-        class state:
-            session: aiohttp.ClientSession
-
-else:
-    from litestar import Litestar
-
-    _Litestar = Litestar
-
-OPEN_URL = "https://open.spotify.com/track/{0}"
+from markdown import markdown
+from enum import Enum
+from jinja2.filters import do_mark_safe
 
 
-async def request_obsession(app: Litestar | _Litestar, user_id: int):
-    async with app.state.session.get(
-        f"http://localhost:8716/obsession/{user_id}"
-    ) as resp:
-        return resp.status, await resp.json()
+class Link(NamedTuple):
+    link: str
+    label: str
+    target: Literal["_blank", "_parent", "_self", "_top"] = "_blank"
 
 
-async def request_playing(app: Litestar | _Litestar, user_id: int):
-    async with app.state.session.get(
-        f"http://localhost:8716/spotify/{user_id}"
-    ) as resp:
-        return resp.status, await resp.json()
+class Links(Enum):
+    discord = Link("https://discord.gg/TdRfGKg8Wh", "discord")
+    github = Link("https://github.com/LeoCx1000", "github")
+    anilist = Link("https://anilist.co/user/LeoCx1000", "anilist")
+    mal = Link("https://myanimelist.net/animelist/LeoCx1000", "MAL")
+    lastfm = Link("https://last.fm/user/LeoCx1000", "last.fm")
+    steam = Link("https://steamcommunity.com/profiles/76561198971611430", "steam")
+    reddit = Link("https://www.reddit.com/user/LeoCx1000/", "reddit")
+    jinja2 = Link("https://jinja.palletsprojects.com/", "jinja2")
+    litestar = Link("https://litestar.dev/", "litestar")
+    dpy = Link("https://pypi.org/project/discord.py/", "discord.py")
+    dpy_inv = Link("https://discord.gg/dpy", "discord.py server")
+
+    def __str__(self):
+        return self.value.link
+
+    def __call__(self, mask: str | None = None, **extra: str):
+        extra.setdefault("href", self.value.link)
+        extra.setdefault("target", self.value.target)
+        extra_fmt = " ".join(f"{k}={v!r}" for k, v in extra.items())
+        return do_mark_safe(f"<a {extra_fmt}>{mask or self.value[1]}</a>")
 
 
-def badge_quote(string: str) -> str:
-    return urllib.parse.quote(string).replace("-", "--").replace("_", "__")
+def render_markdown_file(ctx: Mapping[str, Any], file: str):
+    with open(file, "r") as f:
+        return markdown(f.read())
 
 
-@get("/obsession/{user_id:int}/image")
-async def last_fm_favourite(request: Request, user_id: int) -> Redirect:
-    status, obsession = await request_obsession(request.app, user_id)
+def register_engine_callables(engine: JinjaTemplateEngine):
+    engine.register_template_callable("markdown", render_markdown_file)
+    engine.register_template_callable("navbar", frontend.navbar)
 
-    if status == 404:
-        return Redirect(
-            "https://img.shields.io/badge/No obsession set.-252525?style=flat&logo=spotify"
-        )
-    track_name = obsession["title"]
-    artist = obsession["artist"]
-    return Redirect(
-        f"https://img.shields.io/badge/Current_Favourite: {badge_quote(track_name)} by {badge_quote(artist)}-252525?style=flat&logo=spotify"
-    )
+    engine.engine.globals.update(dict(links=Links))
 
 
-@get("/obsession/{user_id:int}/redirect")
-async def redirect_to_song(request: Request, user_id: int) -> Response:
-    status, obsession = await request_obsession(request.app, user_id)
-    if status == 404:
-        return Response(
-            'Obsession not set. Please join our discord server and use the "/obsession set" command. https://discord.gg/TdRfGKg8Wh',
-            media_type=MediaType.TEXT,
-        )
-    return Redirect(OPEN_URL.format(obsession["track_id"]))
+@get("/")
+async def home() -> Redirect:
+    return Redirect("/home")
 
 
-@get("/listening/{user_id:int}/image")
-async def currently_playing(request: Request, user_id: int) -> Redirect:
-    status, obsession = await request_playing(request.app, user_id)
-
-    if status == 404:
-        return Redirect(
-            "https://img.shields.io/badge/Not listening to anything-252525?style=flat&logo=spotify"
-        )
-    track_name = obsession["title"]
-    artist = obsession["artist"]
-    return Redirect(
-        f"https://img.shields.io/badge/Listening to {badge_quote(track_name)} by {badge_quote(artist)}-252525?style=flat&logo=spotify"
-    )
+@get("/favicon.ico")
+async def favicon() -> Redirect:
+    return Redirect("/static/graphics/favicon.ico")
 
 
-@get("/listening/{user_id:int}/redirect")
-async def redirect_to_playing(request: Request, user_id: int) -> Response:
-    status, obsession = await request_playing(request.app, user_id)
-    if status == 404:
-        return Response(
-            "Please join our discord server so our bot can see your Discord Spotify activity. https://discord.gg/TdRfGKg8Wh",
-            media_type=MediaType.TEXT,
-        )
-    return Redirect(OPEN_URL.format(obsession["track_id"]))
+def handle_404(request: Request, exc: Exception) -> Response:
+    return Response("404 not found.", media_type=MediaType.TEXT, status_code=404)
 
 
 @asynccontextmanager
-async def lifespan(app: _Litestar):
+async def lifespan(app: Litestar):
     async with aiohttp.ClientSession() as session:
         app.state.session = session
         yield
 
 
-def handle_404(request: Request, exc: Exception) -> Response:
-    if request.url.path.endswith("404.png"):
-        return Response("404 not found.")
-    return Redirect("/404.png")
-
-
 app = Litestar(
-    route_handlers=[
-        last_fm_favourite,
-        redirect_to_song,
-        currently_playing,
-        redirect_to_playing,
-        render_code_block,
-    ],
+    route_handlers=[music_badges.router, files.router, frontend.router, favicon, home],
     lifespan=[lifespan],
     exception_handlers={404: handle_404},
+    template_config=TemplateConfig(
+        directory=Path("templates"),
+        engine=JinjaTemplateEngine,
+        engine_callback=register_engine_callables,
+    ),
+    static_files_config=[
+        StaticFilesConfig(path="static", directories=[Path("static")])
+    ],
+    openapi_config=None,
 )

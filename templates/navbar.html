@@ -1,0 +1,24 @@
+<!doctype html>
+
+<link href="/static/styles/navbar.css" rel="stylesheet" />
+<script src="/static/scripts/navbar.js" type="module"></script>
+<nav>
+    <div class="nav-container">
+        <div class="nav-elements">
+            <span class="dashed title"><b>Leo's Collection of Random.</b></span>
+        </div>
+        <div class="nav-elements">
+            {{ navbar() | safe }}
+        </div>
+    </div>
+</nav>
+
+<div class="nav-banner-secondary nav-banner-hidden" id="navbar-wip-banner" role="alert">
+    <div class="nav-container nav-elements nav-banner-secondary" style="color: white; font-size: medium;">
+        <span>
+            🚧 This site is under construction. Join my {{links.discord()}} and ping me (@leocx1000) if you notice
+            anything weird. 🚧
+        </span>
+        <span class="clickable" id="navbar-wip-dismiss">Dismiss</span>
+    </div>
+</div>

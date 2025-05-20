@@ -1,0 +1,81 @@
+@font-face {
+    font-family: Workbench;
+    src: url("/static/fonts/Workbench.ttf");
+}
+
+nav {
+    --nav-background: rgb(25, 25, 25);
+    --nav-text-color: lightgreen;
+    --nav-text-active: lime;
+
+    font-size: x-large;
+    position: sticky;
+    top: 0px;
+    text-decoration: none;
+    background-color: var(--nav-background);
+    z-index: 999;
+}
+
+.nav-container {
+    max-width: var(--main-width);
+    padding-left: 2%;
+    padding-right: 2%;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+.nav-elements {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    align-items: center;
+    color: var(--nav-text-color);
+
+    >* {
+        padding: 2px 5px;
+        text-decoration-thickness: 2px;
+    }
+
+    >a {
+        color: inherit;
+        text-decoration: none;
+        border: 2px dashed var(--nav-background);
+    }
+
+    >.nav-current {
+        border-color: var(--nav-text-color);
+    }
+
+    >a:hover {
+        border-color: var(--nav-text-active);
+        color: var(--nav-text-active);
+    }
+}
+
+.nav-banner-secondary {
+    justify-content: space-between;
+
+    background-color: rgb(83, 0, 0);
+    color: white;
+}
+
+.nav-banner-hidden {
+    display: none;
+}
+
+.title {
+    font-family: Workbench, monospace;
+    padding: 0px;
+    margin-right: auto;
+    font-size: xx-large;
+}

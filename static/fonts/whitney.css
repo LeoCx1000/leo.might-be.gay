@@ -1,0 +1,57 @@
+@font-face {
+    font-family: whitney;
+    src: url('/static/fonts/whitney/bold.otf');
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+@font-face {
+    font-family: whitney;
+    src: url('/static/fonts/whitney/book.otf');;
+    font-family: sans-serif;
+}
+
+@font-face {
+    font-family: whitney;
+    src: url('/static/fonts/whitney/bookitalic.otf');
+    font-style: italic;
+}
+
+@font-face {
+    font-family: whitney;
+    src: url('/static/fonts/whitney/light.otf');
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: whitney;
+    src: url('/static/fonts/whitney/lightitalic.otf');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: whitney;
+    src: url('/static/fonts/whitney/medium.otf');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: whitney;
+    src: url('/static/fonts/whitney/mediumitalic.otf');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: whitney;
+    src: url('/static/fonts/whitney/semibold.otf');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: whitney;
+    src: url('/static/fonts/whitney/SemiboldItalic.otf');
+    font-weight: 600;
+    font-style: italic;
+}

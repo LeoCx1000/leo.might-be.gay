@@ -1,6 +1,6 @@
 import pathlib
 
-from litestar import MediaType, Response, get
+from litestar import MediaType, Response, get, Router
 from litestar.exceptions import HTTPException
 from litestar.response import Redirect
 
@@ -64,7 +64,7 @@ LANGUAGE_MAP = {
 }
 
 
-@get("/code/{filename:str}")
+@get("{filename:str}")
 async def render_code_block(filename: str) -> Response[str]:
     file = BASE_PATH / filename
     if not file.exists() or not file.is_file() or file.parent != BASE_PATH:
@@ -78,3 +78,6 @@ async def render_code_block(filename: str) -> Response[str]:
         HTML.format(language=language, raw_code=content, filename=filename),
         media_type=MediaType.HTML,
     )
+
+
+router = Router("code", route_handlers=[render_code_block])

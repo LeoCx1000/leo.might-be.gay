@@ -1,0 +1,63 @@
+<!doctype html>
+
+<head>
+    <link href="/static/styles/main.css" rel="stylesheet" />
+    <script src="/static/scripts/h2CopyOnClick.js" type="module"></script>
+    <title>Leo's Collection of Random.</title>
+</head>
+
+
+<body>
+    {% include "navbar.html" %}
+
+    <div class="layout">
+
+        <h2><a href="#hello" id="hello">Hello.</a></h2>
+
+        <p>I'm <dashed>Leonardo</dashed>, {{age}}m (he/they). I go as <b>LeoCx1000</b> on most social media. Here
+            you'll find a random collection of my projects and things that I enjoy... If I feel like adding them.
+            I swear this site is not totally abandoned!!
+        </p>
+        <p>In any case, I hope you like this what I've made. If something isn't accessible, please reach out to me.</p>
+
+    </div>
+
+    <div class="layout">
+        <h2><a href="#socials" id="socials">Socials?</a></h2>
+        <p>I'm not really the social type, but there are a few places where you can find me online, which I'll list
+            below. Some of them aren't even <i>social</i> per-se, but just accounts that I actively use, but I'll spare
+            you the details.</p>
+        <ul>
+            <li><b>{{links.discord()}}</b> - My community, I am often active here.</li>
+            <li><b>{{links.github()}}</b> - Where I host most of my programming work.</li>
+            <li><b>{{links.anilist()}}</b> - Peek into my addiction- I mean- I what anime I watch.</li>
+            <li><b>{{links.mal()}}</b> - An automatic mirror of my {{links.anilist()}}. I do not actively use this.</li>
+            <li><b>{{links.lastfm()}}</b> - If you want to see what my music taste is like.</li>
+            <li><b>{{links.steam()}}</b> - For games and stuff, but I'm not much of a gamer.</li>
+            <li><b>{{links.reddit()}}</b> - I browse memes and comment sometimes.</li>
+            <li><b><i class="dashed">hey @ &ltthis domain&gt</i></b> - My email, don't spam it!
+            </li>
+        </ul>
+    </div>
+
+    <div class="layout">
+        <h2><a href="#site" id="site">About this site.</a></h2>
+        <p> This site is written in pure <dashed>html+css+js</dashed> and is being served to you using the python
+            webserver library {{links.litestar()}}, and templated with {{links.jinja2()}}. The source code is
+            currently private, but if you wish to see it for some bizarre reason contact me!</p>
+    </div>
+
+    <div class="layout icons">
+        <a href="//brainmade.org" target="_blank">
+            <div class="_88x33">
+                <img alt="The Brainmade Mark" src="/static/graphics/brainmade.svg" width="82" height="28">
+            </div>
+        </a>
+        <a href="//cadence.moe/blog/2024-10-05-created-by-a-human-badges">
+            <div class="_88x33">
+                <img alt="The Brainmade Mark" src="/static/graphics/cadence.svg" width="88" height="33">
+            </div>
+        </a>
+
+    </div>
+</body>

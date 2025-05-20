@@ -1,3 +1,2 @@
 aiohttp
-litestar
-uvicorn
+litestar[standard]

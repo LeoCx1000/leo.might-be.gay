@@ -12,7 +12,6 @@ from litestar.template.config import TemplateConfig
 
 from routes import files, frontend, music_badges
 
-from markdown import markdown
 from enum import Enum
 from jinja2.filters import do_mark_safe
 
@@ -46,13 +45,7 @@ class Links(Enum):
         return do_mark_safe(f"<a {extra_fmt}>{mask or self.value[1]}</a>")
 
 
-def render_markdown_file(ctx: Mapping[str, Any], file: str):
-    with open(file, "r") as f:
-        return markdown(f.read())
-
-
 def register_engine_callables(engine: JinjaTemplateEngine):
-    engine.register_template_callable("markdown", render_markdown_file)
     engine.register_template_callable("navbar", frontend.navbar)
 
     engine.engine.globals.update(dict(links=Links))

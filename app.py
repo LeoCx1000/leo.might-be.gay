@@ -9,7 +9,7 @@ from litestar.contrib.jinja import JinjaTemplateEngine
 from litestar.response import Redirect
 from litestar.static_files import StaticFilesConfig
 from litestar.template.config import TemplateConfig
-
+import subprocess
 from routes import files, frontend, music_badges, private
 
 from enum import Enum
@@ -69,7 +69,9 @@ def handle_404(request: Request, exc: Exception) -> Response:
 async def lifespan(app: Litestar):
     async with aiohttp.ClientSession() as session:
         app.state.session = session
+        p = subprocess.Popen(["node", "shiki.js"])
         yield
+        p.terminate()
 
 
 app = Litestar(

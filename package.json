@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "express": "^5.1.0",
+    "shiki": "^3.4.2"
+  },
+  "type": "module",
+  "name": "leo.might-be.gay",
+  "version": "1.0.0",
+  "description": "",
+  "main": "shiki.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeoCx1000/leo.might-be.gay.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LeoCx1000/leo.might-be.gay/issues"
+  },
+  "homepage": "https://github.com/LeoCx1000/leo.might-be.gay#readme"
+}

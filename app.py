@@ -10,7 +10,7 @@ from litestar.response import Redirect
 from litestar.static_files import StaticFilesConfig
 from litestar.template.config import TemplateConfig
 
-from routes import files, frontend, music_badges
+from routes import files, frontend, music_badges, private
 
 from enum import Enum
 from jinja2.filters import do_mark_safe
@@ -73,7 +73,14 @@ async def lifespan(app: Litestar):
 
 
 app = Litestar(
-    route_handlers=[music_badges.router, files.router, frontend.router, favicon, home],
+    route_handlers=[
+        music_badges.router,
+        files.router,
+        frontend.router,
+        private.router,
+        favicon,
+        home,
+    ],
     lifespan=[lifespan],
     exception_handlers={404: handle_404},
     template_config=TemplateConfig(

@@ -1,8 +1,11 @@
 <!doctype html>
 
 <head>
+
     <link href="/static/styles/main.css" rel="stylesheet" />
     <script src="/static/scripts/h2CopyOnClick.js" type="module"></script>
+    <script src="/static/scripts/htmx.min.js"></script>
+    <script src="/static/scripts/htmx-sse.min.js"></script>
     <title>Leo's Collection of Random.</title>
 </head>
 
@@ -14,21 +17,39 @@
 
         <h2><a href="#hello" id="hello">Hello.</a></h2>
 
-        <p>I'm <dashed>Leonardo</dashed>, {{age}} (he/they). Enthusiast programmer, but studying (ish). You can find me
-            as <b>LeoCx1000</b> on whatever social media I use. No promises on being active though... Here
-            you'll find a random collection of my projects and things that I enjoy- if I feel like adding them, that is.
-            I swear this site is not totally abandoned!!
-        </p>
-        <p>In any case, I hope you like this what I've made. If something isn't accessible, please reach out to me.</p>
+        <p>Name's <dashed>Leonardo</dashed>, {{age}} (he/him/any)<br>My username is usually <b><i>LeoCx1000</i></b></p>
+        <div hx-ext="sse" sse-connect="/api/lastfm-html" sse-swap="lastfm-html"></div>
+
+        <h3>Stuff that I enjoy...</h3>
+        <ul>
+            <li><b>Coding</b> random projects. Mainly in {{links.python()}}, but whatever's convenient. I used to do
+                {{links.arduino()}} stuff, but it's been awhile since I've had an excuse to. I want to learn
+                {{links.godot()}} because it looks nice for creating GUIs, apps and games.</li>
+            <li><b>Animals</b>. I love 'em! I have 2 cats and 4 dogs. Used to have a bunny too, and some fish. Can you
+                pet fish? Absolutely! But should you?</li>
+            <li>Watching mostly <b>anime</b>. Fuck I spend too much time on this but hey, it's a nice escape from
+                reality and a lot of fun! (Feel free to recommend me stuff)</li>
+            <li>Reading <b>Books</b>. Mostly Japanese light novels which I track on my {{links.anilist()}}. I'm also
+                currently reading <i class="dashed">The Hitchhiker's Guide to the Galaxy</i> and other stuff.</li>
+        </ul>
+        <h3>Shit I don't like...</h3>
+        <ul>
+            <li><b>Loud noises</b>. Just why? Why would you go to a concert when there's home?</li>
+            <li><b>Myself</b>, but only days.</li>
+            <li><b>Bitter food</b>. I prefer <i>normal</i> taste profiles.</li>
+            <li>How <b>Corporations</b> and <b>Artificial Intelligence</b> have ruined the internet, and now everything
+                is algorithmically catered and fed to you from one of a handful of content providers. Individualism is
+                dying and everyone follows shallow trends that are cherry-picked from mountains of content, each trying
+                to leave a mark but getting drowned in the noise. Oops didn't mean to get political~</li>
+            <li>How <i>I contribute</i> to the above. (trying to improve)</li>
+        </ul>
 
     </div>
 
     <div class="layout">
         <h2><a href="#contacts" id="contacts">Socials?</a></h2>
         <p>I'm not <i>really</i> the social type, but there are a few places where you can find me online, which I'll
-            list below. Some of them aren't even <i>social</i> per-se, but just accounts that I actively use. As
-            mentioned above, you can find me as <b>LeoCx1000</b> on other socials, but I don't really use many of them,
-            and a lot of accounts are just empty. If you do want to reach me, I suggest one of the below:</p>
+            list below. Some of them aren't even <i>social</i> per-se, but just accounts that I actively use.</p>
         <ul>
             <li><b>{{links.discord()}}</b> - My community, I am often active here.</li>
             <li><b>{{links.github()}}</b> - Where I host most of my programming work.</li>
@@ -37,8 +58,8 @@
             <li><b>{{links.lastfm()}}</b> - If you want to see what my music taste is like.</li>
             <li><b>{{links.steam()}}</b> - For games and stuff, but I'm not much of a gamer.</li>
             <li><b>{{links.reddit()}}</b> - I browse memes and comment sometimes.</li>
-            <li><b><i class="dashed">hey @ &ltthis domain&gt</i></b> - My email, don't spam it!</li>
-            <li><i>and more...</i></li>
+            <li><b><i class="dashed">hey @ &ltthis domain&gt</i></b> - My email, don't spam it please!</li>
+            <li><i>And more... but these are the biggest ones.</i></li>
         </ul>
     </div>
 

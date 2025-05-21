@@ -43,14 +43,15 @@ a,
 a:link,
 .clickable {
     cursor: pointer;
-    color: rgb(167, 214, 167);
-    text-decoration: underline dashed 2px;
+    color: inherit;
+    text-decoration: underline dashed 2px lightgreen;
 }
 
 a:hover,
 .clickable:hover {
-    color: lightgreen;
+    font-style: italic;
     filter: drop-shadow(0.5px 0.5px 0px green);
+    text-decoration-color: lightgreen;
     text-decoration-style: solid;
 }
 
@@ -58,7 +59,8 @@ ul {
     list-style-type: "- ";
 }
 
-h2 {
+h2,
+h3 {
     color: lightgrey;
     margin-top: 1em;
 
@@ -75,6 +77,14 @@ h2::before {
     font-style: italic;
     color: var(--font-color);
 }
+
+h3::before {
+    content: "$ ";
+    font-weight: 200;
+    color: var(--font-color);
+
+}
+
 
 h2:has(a:hover)::after {
     content: " Click to copy hyperlink.";

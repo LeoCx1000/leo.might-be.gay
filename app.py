@@ -1,19 +1,20 @@
+import subprocess
 from contextlib import asynccontextmanager
+from enum import Enum
 from pathlib import Path
-from typing import Any, Mapping, NamedTuple, Literal
+from typing import Literal, NamedTuple
 
 import aiohttp
-from litestar import Litestar, MediaType, Request, get
-from litestar.exceptions import HTTPException
+from jinja2.filters import do_mark_safe
+from litestar import Litestar, Request, get
 from litestar.contrib.jinja import JinjaTemplateEngine
+from litestar.exceptions import HTTPException
+from litestar.plugins.htmx import HTMXPlugin
 from litestar.response import Redirect, Template
 from litestar.static_files import StaticFilesConfig
 from litestar.template.config import TemplateConfig
-import subprocess
-from routes import files, frontend, music_badges, private
 
-from enum import Enum
-from jinja2.filters import do_mark_safe
+from routes import files, frontend, music_badges, private
 
 
 class Link(NamedTuple):
@@ -24,17 +25,20 @@ class Link(NamedTuple):
 
 class Links(Enum):
     home = Link("/", "home", target="_self")
-    discord = Link("https://discord.gg/TdRfGKg8Wh", "discord")
-    github = Link("https://github.com/LeoCx1000", "github")
-    anilist = Link("https://anilist.co/user/LeoCx1000", "anilist")
+    discord = Link("https://discord.gg/TdRfGKg8Wh", "Discord")
+    github = Link("https://github.com/LeoCx1000", "GitHub")
+    anilist = Link("https://anilist.co/user/LeoCx1000", "AniList")
     mal = Link("https://myanimelist.net/animelist/LeoCx1000", "MAL")
     lastfm = Link("https://last.fm/user/LeoCx1000", "last.fm")
-    steam = Link("https://steamcommunity.com/profiles/76561198971611430", "steam")
+    steam = Link("https://steamcommunity.com/profiles/76561198971611430", "Steam")
     reddit = Link("https://www.reddit.com/user/LeoCx1000/", "reddit")
     jinja2 = Link("https://jinja.palletsprojects.com/", "jinja2")
     litestar = Link("https://litestar.dev/", "litestar")
     dpy = Link("https://pypi.org/project/discord.py/", "discord.py")
     dpy_inv = Link("https://discord.gg/dpy", "discord.py server")
+    arduino = Link("https://arduino.cc/", "Arduino")
+    godot = Link("https://godotengine.org/", "Godot")
+    python = Link("https://www.python.org/", "Python")
 
     def __str__(self):
         return self.value.link
@@ -88,5 +92,6 @@ app = Litestar(
     static_files_config=[
         StaticFilesConfig(path="static", directories=[Path("static")])
     ],
+    plugins=[HTMXPlugin()],
     openapi_config=None,
 )

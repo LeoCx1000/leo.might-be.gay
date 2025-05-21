@@ -29,7 +29,8 @@ body {
 
     /* box-shadow: 1rem 1rem 0px rgba(20, 20, 20, 0.95); */
     filter: drop-shadow(1rem 1rem 0px rgba(15, 15, 15, 0.80));
-    max-width: var(--main-width);
+    max-width: fit-content;
+
     margin: 1em auto 2em;
     color: var(--font-color);
 }
@@ -74,7 +75,7 @@ h2::before {
 code {
     display: block;
     box-sizing: content-box;
-    padding: 5px;
+    padding: 10px;
     overflow: scroll;
     counter-reset: step;
     counter-increment: step 0;

@@ -39,6 +39,7 @@ class Links(Enum):
     arduino = Link("https://arduino.cc/", "Arduino")
     godot = Link("https://godotengine.org/", "Godot")
     python = Link("https://www.python.org/", "Python")
+    source = Link("https://github.com/leocx1000/leo.might-be.gay", "source")
 
     def __str__(self):
         return self.value.link

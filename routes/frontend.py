@@ -14,7 +14,7 @@ def age():
     return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
 
 
-@get("/home", media_type=MediaType.HTML)
+@get("/", media_type=MediaType.HTML)
 async def home_and_about(request: Request) -> Template:
     return Template(template_name="index.html", context={"age": age()})
 

@@ -51,11 +51,6 @@ def register_engine_callables(engine: JinjaTemplateEngine):
     engine.engine.globals.update(dict(links=Links))
 
 
-@get("/")
-async def home() -> Redirect:
-    return Redirect("/home")
-
-
 @get("/favicon.ico")
 async def favicon() -> Redirect:
     return Redirect("/static/graphics/favicon.ico")
@@ -81,7 +76,6 @@ app = Litestar(
         frontend.router,
         private.router,
         favicon,
-        home,
     ],
     lifespan=[lifespan],
     exception_handlers={404: handle_404},

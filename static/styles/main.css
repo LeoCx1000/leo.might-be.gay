@@ -73,6 +73,7 @@ h2::before {
     content: "# ";
     font-weight: 200;
     font-style: italic;
+    color: var(--font-color);
 }
 
 h2:has(a:hover)::after {

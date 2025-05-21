@@ -3,10 +3,10 @@ from pathlib import Path
 from typing import Any, Mapping, NamedTuple, Literal
 
 import aiohttp
-from litestar import Litestar, MediaType, Request, Response, get
-
+from litestar import Litestar, MediaType, Request, get
+from litestar.exceptions import HTTPException
 from litestar.contrib.jinja import JinjaTemplateEngine
-from litestar.response import Redirect
+from litestar.response import Redirect, Template
 from litestar.static_files import StaticFilesConfig
 from litestar.template.config import TemplateConfig
 import subprocess
@@ -23,6 +23,7 @@ class Link(NamedTuple):
 
 
 class Links(Enum):
+    home = Link("/", "home", target="_self")
     discord = Link("https://discord.gg/TdRfGKg8Wh", "discord")
     github = Link("https://github.com/LeoCx1000", "github")
     anilist = Link("https://anilist.co/user/LeoCx1000", "anilist")
@@ -56,8 +57,8 @@ async def favicon() -> Redirect:
     return Redirect("/static/graphics/favicon.ico")
 
 
-def handle_404(request: Request, exc: Exception) -> Response:
-    return Response("404 not found.", media_type=MediaType.TEXT, status_code=404)
+def handle_exception(request: Request, exc: HTTPException) -> Template:
+    return Template("error_code.html", context=dict(error=str(exc)))
 
 
 @asynccontextmanager
@@ -78,7 +79,7 @@ app = Litestar(
         favicon,
     ],
     lifespan=[lifespan],
-    exception_handlers={404: handle_404},
+    exception_handlers={HTTPException: handle_exception},
     template_config=TemplateConfig(
         directory=Path("templates"),
         engine=JinjaTemplateEngine,

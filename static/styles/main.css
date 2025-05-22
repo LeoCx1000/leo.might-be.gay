@@ -93,18 +93,20 @@ h2:has(a:hover)::after {
     font-style: italic;
 }
 
+li+li {
+    margin-top: 5px;
+}
+
 .icons {
     padding-top: 1em;
     padding-bottom: 1em;
     display: flex;
     flex-direction: row;
+    align-items: center;
     flex-wrap: wrap;
     gap: 10px;
 }
 
-li+li {
-    margin-top: 5px;
-}
 
 ._88x31 {
     background-color: #000;
@@ -113,6 +115,7 @@ li+li {
     display: flex;
     align-items: center;
     justify-content: center;
+    image-rendering: crisp-edges;
 }
 
 input[type="checkbox"]:has(~span) {

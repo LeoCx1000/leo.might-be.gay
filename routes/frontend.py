@@ -15,7 +15,7 @@ PATTERN = re.compile("|".join(re.escape(k) for k in REPL), flags=re.IGNORECASE)
 LFM_LOGO = "<img src='/static/graphics/lastfm.svg' style='height:1em; vertical-align:middle; padding-bottom: 0.1em'/>"
 
 
-class SpotifyEventsHandler:
+class LastFmPoller:
     NOTHING = f"<p>{LFM_LOGO} Listening to <i>nothing rn...</i></p>"
     LISTENING_TO = "<p>{LFM_LOGO} Listening to <a href={song_url} target='_blank'><b>{song}</b></a> by {artist}</p>"
     LAST_LISTENED = "<p>{LFM_LOGO} Last listened to <a href={song_url} target='_blank'><b>{song}</b></a> by {artist}</p>"
@@ -100,15 +100,17 @@ async def my_projects(request: Request) -> Template:
     return Template(template_name="projects.html")
 
 
-spotify = SpotifyEventsHandler()
+lastfm_poller = LastFmPoller()
 
 
 @get("/lastfm-html")
-async def htmx_test() -> ServerSentEvent:
+async def serve_lastfm_htmx() -> ServerSentEvent:
     if config.LASTFM_API_KEY:
-        return ServerSentEvent(content=spotify.iterator(), event_type="lastfm-html")
+        return ServerSentEvent(
+            content=lastfm_poller.iterator(), event_type="lastfm-html"
+        )
     else:
-        return ServerSentEvent(spotify.NOTHING, event_type="lastfm-html")
+        return ServerSentEvent(lastfm_poller.NOTHING, event_type="lastfm-html")
 
 
 def navbar(ctx: Mapping[str, Any]) -> str:
@@ -125,5 +127,5 @@ def navbar(ctx: Mapping[str, Any]) -> str:
 
 
 frontpage = Router("/", route_handlers=[home_and_about, my_projects])
-backend_hooks = Router("/api", route_handlers=[htmx_test])
+backend_hooks = Router("/api", route_handlers=[serve_lastfm_htmx])
 router = Router("/", route_handlers=[frontpage, backend_hooks])

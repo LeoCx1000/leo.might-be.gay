@@ -1,18 +1,23 @@
 import asyncio
 import re
 from datetime import date
-from typing import Any, Mapping
+from pathlib import Path
+from typing import Any, Mapping, NamedTuple
 
 import aiohttp
+import mistune
+from jinja2.filters import do_mark_safe
 from litestar import MediaType, Request, Router, get
-from litestar.plugins.htmx import HTMXTemplate
+from litestar.exceptions import HTTPException
 from litestar.response import ServerSentEvent, Template
+from markupsafe import Markup
 
 import config
 
 REPL = {"and": "&", "_": " "}
 PATTERN = re.compile("|".join(re.escape(k) for k in REPL), flags=re.IGNORECASE)
 LFM_LOGO = "<img src='/static/graphics/lastfm.svg' style='height:1em; vertical-align:middle; padding-bottom: 0.1em'/>"
+GALLERIES_FOLDER = Path("/www/files/galleries")
 
 
 class LastFmPoller:
@@ -93,6 +98,9 @@ class LastFmPoller:
             self.waiters.pop(id(waiter))
 
 
+lastfm_poller = LastFmPoller()
+
+
 def age():
     born, today = date(2003, 9, 5), date.today()
     return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
@@ -104,11 +112,64 @@ async def home_and_about(request: Request) -> Template:
 
 
 @get("/projects", media_type=MediaType.HTML)
-async def my_projects(request: Request) -> Template:
+async def projects(request: Request) -> Template:
     return Template(template_name="projects.html")
 
 
-lastfm_poller = LastFmPoller()
+class Folder(NamedTuple):
+    name: str
+    readme_html: Markup
+
+
+class Image(NamedTuple):
+    absolute_url: str
+    filename: str
+
+
+def make_readme(folder: Path):
+    file = folder / "README.md"
+    if not file.exists() or not file.is_file():
+        return do_mark_safe("")
+    return do_mark_safe(str(mistune.html(file.read_text())))
+
+
+@get("/gallery/{folder_name:str}")
+async def get_folder(folder_name: str) -> Template:
+    folder = GALLERIES_FOLDER / folder_name
+    if not (folder_name.isalnum() and folder.exists() and folder.is_dir()):
+        raise HTTPException(status_code=404)
+
+    images = [
+        Image(
+            filename=image.name,
+            absolute_url=f"/gallery/{folder_name}/{image.name}",
+        )
+        for image in sorted(folder.iterdir(), key=lambda i: i.name, reverse=True)
+        if image.is_file() and image.name != "README.md"
+    ]
+
+    return Template(
+        "gallery.html",
+        context=dict(
+            images=images,
+            folder=Folder(
+                name=folder_name,
+                readme_html=make_readme(folder),
+            ),
+        ),
+    )
+
+
+@get("/gallery", sync_to_thread=True)
+def gallery(request: Request) -> Template:
+    folders = [
+        Folder(name=folder.name, readme_html=make_readme(folder))
+        for folder in sorted(
+            GALLERIES_FOLDER.iterdir(), key=lambda i: i.name, reverse=True
+        )
+        if folder.is_dir()
+    ]
+    return Template("galleries_index.html", context=dict(folders=folders))
 
 
 @get("/lastfm-html")
@@ -136,6 +197,6 @@ def navbar(ctx: Mapping[str, Any]) -> str:
     return "\n".join(fmt)
 
 
-frontpage = Router("/", route_handlers=[home_and_about, my_projects])
+frontpage = Router("/", route_handlers=[home_and_about, projects, gallery])
 backend_hooks = Router("/api", route_handlers=[serve_lastfm_htmx])
-router = Router("/", route_handlers=[frontpage, backend_hooks])
+router = Router("/", route_handlers=[frontpage, backend_hooks, get_folder])

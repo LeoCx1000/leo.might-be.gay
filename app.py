@@ -22,7 +22,11 @@ def register_engine_callables(engine: JinjaTemplateEngine):
 
 
 def handle_exception(request: Request, exc: HTTPException) -> Template:
-    return Template("error_code.html", context=dict(error=str(exc)))
+    return Template(
+        "error_code.html",
+        context=dict(error=str(exc)),
+        status_code=exc.status_code,
+    )
 
 
 @asynccontextmanager
@@ -49,7 +53,7 @@ app = Litestar(
         engine_callback=register_engine_callables,
     ),
     static_files_config=[
-        StaticFilesConfig(path="static", directories=[Path("static")])
+        StaticFilesConfig(path="static", directories=[Path("static")]),
     ],
     plugins=[HTMXPlugin()],
     openapi_config=None,

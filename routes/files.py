@@ -10,21 +10,6 @@ import os
 BASE_PATH = pathlib.Path("/www/files")
 
 
-LANGUAGE_MAP = {
-    # I could set it to auto... nah!
-    "py": "python",
-    "js": "javascript",
-    "ts": "typescript",
-    "txt": "plaintext",
-    "log": "plaintext",
-    "md": "markdown",
-    "toml": "ini",
-    "yaml": "yaml",
-    "json": "json",
-    "css": "css",
-}
-
-
 @get("{filename:path}", media_type=MediaType.HTML)
 async def render_code_block(request: Request, filename: str) -> Template:
     file = BASE_PATH / filename.removeprefix("/")

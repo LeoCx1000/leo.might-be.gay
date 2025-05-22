@@ -1,0 +1,35 @@
+<!doctype html>
+
+<head>
+    {% include "common/head.html" %}
+    <style>
+        h3::before {
+            content: '/ '
+        }
+
+        h2:has(a:hover)::after {
+            content: " open folder";
+        }
+    </style>
+</head>
+
+
+<body>
+
+    {% include "common/navbar.html" %}
+
+    <div class="layout">
+
+        <h2>Image galleries.</h2>
+        <p>Cool collections of images. Click on the folder names to see them!</p>
+    </div>
+    <div class="layout">
+        {% for folder in folders %}
+        <h3><a href="/gallery/{{folder.name}}">{{folder.name}}</a></h3>
+        {{folder.readme_html}}
+        {% endfor %}
+    </div>
+
+
+
+</body>

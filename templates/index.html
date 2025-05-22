@@ -1,8 +1,7 @@
 <!doctype html>
 
 <head>
-
-    <link href="/static/styles/main.css" rel="stylesheet" />
+    {% include "common/head.html" %}
     <script src="/static/scripts/h2CopyOnClick.js" type="module"></script>
     <script src="/static/scripts/htmx.min.js"></script>
     <script src="/static/scripts/htmx-sse.min.js"></script>
@@ -11,14 +10,18 @@
 
 
 <body>
-    {% include "navbar.html" %}
+    {% include "common/navbar.html" %}
 
     <div class="layout">
 
         <h2><a href="#hello" id="hello">Hello.</a></h2>
 
         <p>Name's <dashed>Leonardo</dashed>, {{age}} (he/him/any)<br>My username is usually <b><i>LeoCx1000</i></b></p>
-        <div hx-ext="sse" sse-connect="/api/lastfm-html" sse-swap="lastfm-html"></div>
+        <div hx-ext="sse" sse-connect="/api/lastfm-html" sse-swap="lastfm-html">
+            <p><img src='/static/graphics/lastfm.svg'
+                    style="height:1em; vertical-align:middle; padding-bottom: 0.1em" />
+                Listening to <i>nothing rn...</i></p>
+        </div>
 
         <h3>Stuff that I enjoy...</h3>
         <ul>

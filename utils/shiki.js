@@ -5,13 +5,13 @@ import { readFileSync } from 'fs';
 const app = express();
 
 
-app.get("/hl/:file", async (req, res, next) => {
-    let file = req.params.file;
+app.get("/hl", async (req, res, next) => {
+    let file = req.query.path;
 
-    var contents = readFileSync('/www/files/' + file, 'utf8');
+    var contents = readFileSync(file, 'utf8');
     var split = file.split('.');
     var html = await codeToHtml(contents, {
-        lang: req.params.lang || split[split.length - 1], theme: req.query.theme || 'vitesse-dark'
+        lang: req.query.lang || split[split.length - 1], theme: req.query.theme || 'vitesse-dark'
     });
     res.send(html);
 });

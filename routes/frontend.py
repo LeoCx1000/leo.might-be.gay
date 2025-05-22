@@ -5,8 +5,8 @@ from typing import Any, Mapping
 
 import aiohttp
 from litestar import MediaType, Request, Router, get
-from litestar.response import ServerSentEvent, Template
 from litestar.plugins.htmx import HTMXTemplate
+from litestar.response import ServerSentEvent, Template
 
 import config
 

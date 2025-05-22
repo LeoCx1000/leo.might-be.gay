@@ -1,6 +1,7 @@
 <!doctype html>
 
 <head>
+    {% include "common/head.html" %}
     <link href="/static/styles/code.css" rel="stylesheet" />
     <script src="/static/scripts/h2CopyOnClick.js" type="module"></script>
     <title>{{ filename }}</title>
@@ -8,7 +9,7 @@
 
 
 <body>
-    {% include "navbar.html" %}
+    {% include "common/navbar.html" %}
 
     <div class="layout detect-checkbox">
 

@@ -21,11 +21,6 @@ def register_engine_callables(engine: JinjaTemplateEngine):
     engine.engine.globals.update(dict(links=Links))
 
 
-@get("/favicon.ico")
-async def favicon() -> Redirect:
-    return Redirect("/static/graphics/favicon.ico")
-
-
 def handle_exception(request: Request, exc: HTTPException) -> Template:
     return Template("error_code.html", context=dict(error=str(exc)))
 
@@ -45,7 +40,6 @@ app = Litestar(
         files.router,
         frontend.router,
         private.router,
-        favicon,
     ],
     lifespan=[lifespan],
     exception_handlers={HTTPException: handle_exception},

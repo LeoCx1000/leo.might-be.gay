@@ -11,6 +11,7 @@ class Link(NamedTuple):
 
 class Links(Enum):
     home = Link("/", "home", target="_self")
+    contact = Link("/#contacts", "contact me", target="_self")
     discord = Link("https://discord.gg/TdRfGKg8Wh", "Discord")
     github = Link("https://github.com/LeoCx1000", "GitHub")
     anilist = Link("https://anilist.co/user/LeoCx1000", "AniList")

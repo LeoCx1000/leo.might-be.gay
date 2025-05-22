@@ -64,7 +64,7 @@ nav {
 
 .nav-banner-secondary {
     justify-content: space-between;
-
+    flex-wrap: nowrap;
     background-color: rgb(83, 0, 0);
     color: white;
 }
@@ -78,4 +78,26 @@ nav {
     padding: 0px;
     margin-right: auto;
     font-size: xx-large;
+}
+
+/* Mobile css */
+@media (hover: none) and (pointer: coarse) {
+    .title {
+        font-size: xxx-large;
+    }
+
+    nav {
+        position: relative;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        font-size: xxx-large;
+    }
+
+    .nav-banner-secondary {
+        font-size: xx-large !important;
+    }
+
+    :root {
+        --main-width: 90%;
+    }
 }

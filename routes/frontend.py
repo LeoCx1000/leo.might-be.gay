@@ -29,47 +29,55 @@ class LastFmPoller:
         for waiter in self.waiters.values():
             waiter.set()
 
+    async def update_from_lastfm(self, session: aiohttp.ClientSession | None = None):
+        _session = session or aiohttp.ClientSession()
+        try:
+            params = {
+                "method": "user.getrecenttracks",
+                "user": config.LASTFM_USERNAME,
+                "format": "json",
+                "api_key": config.LASTFM_API_KEY,
+                "limit": 1,
+            }
+            async with _session.get(
+                "http://ws.audioscrobbler.com/2.0/", params=params
+            ) as response:
+                if response.status == 200:
+                    data = await response.json()
+                    try:
+                        song = data["recenttracks"]["track"][0]
+                        song_name = song["name"]
+                        song_url = song["url"]
+                        song_artist = song["artist"]["#text"]
+
+                        if song.get("@attr", {}).get("nowplaying") == "true":
+                            to_fmt = self.LISTENING_TO
+                        else:
+                            to_fmt = self.LAST_LISTENED
+
+                        new_html = to_fmt.format(
+                            LFM_LOGO=LFM_LOGO,
+                            song_url=song_url,
+                            song=song_name,
+                            artist=song_artist,
+                        )
+                        if self.html != new_html:
+                            self.html = new_html
+                            self.set_waiters()
+
+                    except (KeyError, AssertionError):
+                        if self.html != self.NOTHING:
+                            self.html = self.NOTHING
+                            self.set_waiters()
+        finally:
+            if not session:
+                await _session.close()
+
     async def lastfm_getter(self):
         async with aiohttp.ClientSession() as session:
             while True:
-                params = {
-                    "method": "user.getrecenttracks",
-                    "user": config.LASTFM_USERNAME,
-                    "format": "json",
-                    "api_key": config.LASTFM_API_KEY,
-                    "limit": 1,
-                }
-                async with session.get(
-                    "http://ws.audioscrobbler.com/2.0/", params=params
-                ) as response:
-                    if response.status == 200:
-                        data = await response.json()
-                        try:
-                            song = data["recenttracks"]["track"][0]
-                            song_name = song["name"]
-                            song_url = song["url"]
-                            song_artist = song["artist"]["#text"]
-
-                            if song.get("@attr", {}).get("nowplaying") == "true":
-                                to_fmt = self.LISTENING_TO
-                            else:
-                                to_fmt = self.LAST_LISTENED
-
-                            new_html = to_fmt.format(
-                                LFM_LOGO=LFM_LOGO,
-                                song_url=song_url,
-                                song=song_name,
-                                artist=song_artist,
-                            )
-                            if self.html != new_html:
-                                self.html = new_html
-                                self.set_waiters()
-
-                        except (KeyError, AssertionError):
-                            if self.html != self.NOTHING:
-                                self.html = self.NOTHING
-                                self.set_waiters()
-
+                if self.waiters:
+                    await self.update_from_lastfm(session)
                 await asyncio.sleep(2)
 
     async def iterator(self):
@@ -106,6 +114,8 @@ lastfm_poller = LastFmPoller()
 @get("/lastfm-html")
 async def serve_lastfm_htmx() -> ServerSentEvent:
     if config.LASTFM_API_KEY:
+        if not lastfm_poller.waiters:
+            asyncio.create_task(lastfm_poller.update_from_lastfm())
         return ServerSentEvent(
             content=lastfm_poller.iterator(), event_type="lastfm-html"
         )

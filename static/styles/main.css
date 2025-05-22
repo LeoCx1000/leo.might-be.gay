@@ -114,3 +114,19 @@ li+li {
     align-items: center;
     justify-content: center;
 }
+
+input[type="checkbox"]:has(~span) {
+    opacity: 0;
+    cursor: pointer;
+    position: absolute;
+    z-index: 1000;
+    transform: scale(1.5);
+}
+
+input[type="checkbox"]~span::before {
+    content: "[ ] ";
+}
+
+input[type="checkbox"]:checked~span::before {
+    content: "[x] ";
+}

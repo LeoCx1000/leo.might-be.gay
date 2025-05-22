@@ -28,5 +28,13 @@ code .line::before {
     margin-right: 1.5rem;
     display: inline-block;
     text-align: right;
-    color: rgba(115, 138, 148, .4)
+    color: rgba(115, 138, 148, .4);
+}
+
+.detect-checkbox:has(#text-wrap:checked)>pre>code {
+    text-wrap: wrap;
+}
+
+h2:has(a:hover)::after {
+    display: none;
 }

@@ -142,7 +142,7 @@ async def get_folder(folder_name: str) -> Template:
     images = [
         Image(
             filename=image.name,
-            absolute_url=f"/gallery/{folder_name}/{image.name}",
+            absolute_url=f"/galleries/{folder_name}/{image.name}",
         )
         for image in sorted(folder.iterdir(), key=lambda i: i.name, reverse=True)
         if image.is_file() and image.name != "README.md"

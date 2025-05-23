@@ -7,8 +7,8 @@
             content: '/ '
         }
 
-        h2:has(a:hover)::after {
-            content: " open folder";
+        ul {
+            list-style-type: "/ ";
         }
     </style>
 </head>
@@ -21,7 +21,12 @@
     <div class="layout">
 
         <h2>Image galleries.</h2>
-        <p>Cool collections of images. Click on the folder names to see them!</p>
+        <p>Cool collections of images. Here are all the folders; see below (or inside) for a description of each.</p>
+        <ul>
+            {% for folder in folders %}
+            <li><a href="/gallery/{{folder.name}}">{{folder.name}}</a></li>
+            {% endfor %}
+        </ul>
     </div>
 
     {% for folder in folders %}

@@ -22,9 +22,10 @@ body {
     position: inherit;
     background-color: rgba(30, 30, 30, 0.80);
 
+    padding-top: 0.5rem;
     padding-left: 2%;
     padding-right: 2%;
-    padding-bottom: 0.5%;
+    padding-bottom: 0.5rem;
 
     /* box-shadow: 1rem 1rem 0px rgba(20, 20, 20, 0.95); */
     filter: drop-shadow(1rem 1rem 0px rgba(15, 15, 15, 0.80));
@@ -61,7 +62,6 @@ ul {
 h2,
 h3 {
     color: lightgrey;
-    margin-top: 1em;
 
     >* {
         color: inherit !important;

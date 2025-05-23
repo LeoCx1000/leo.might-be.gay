@@ -12,7 +12,7 @@ code {
     display: block;
     box-sizing: content-box;
     padding: 10px;
-    overflow: scroll;
+    overflow-x: auto;
     counter-reset: step;
     counter-increment: step 0;
 }

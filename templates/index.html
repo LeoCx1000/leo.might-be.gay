@@ -70,9 +70,12 @@
 
     <div class="layout">
         <h2><a href="#site" id="site">About this site.</a></h2>
-        <p> This site is written in pure <dashed>html+css+js</dashed> and is being served to you using the python
-            webserver library {{links.litestar()}}, and templated with {{links.jinja2()}}. The source code is
-            public and available {{links.source("here")}}.</p>
+        <p> This site is written in <dashed>html+css+js</dashed>, with some of {{links.htmx()}}. It's served to you
+            using the python webserver library {{links.litestar()}}, and templated with {{links.jinja2()}}. Some
+            sections are generated using the markdown parser {{links.mistune()}}. The source code is public and
+            available {{links.source("here")}}.</p>
+        <p>I test using the firefox browser, both on phone and computer. If you notice anything weird, especially when
+            using chromium-based browsers, please {{links.contact()}} me.</p>
     </div>
 
     <div class="layout icons">

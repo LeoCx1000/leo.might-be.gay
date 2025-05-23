@@ -164,9 +164,7 @@ async def get_folder(folder_name: str) -> Template:
 def gallery(request: Request) -> Template:
     folders = [
         Folder(name=folder.name, readme_html=make_readme(folder))
-        for folder in sorted(
-            GALLERIES_FOLDER.iterdir(), key=lambda i: i.name, reverse=True
-        )
+        for folder in sorted(GALLERIES_FOLDER.iterdir(), key=lambda i: i.name)
         if folder.is_dir()
     ]
     return Template("galleries_index.html", context=dict(folders=folders))

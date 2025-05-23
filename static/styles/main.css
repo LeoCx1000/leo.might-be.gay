@@ -129,6 +129,20 @@ input[type="checkbox"]~span::before {
     content: "[ ] ";
 }
 
-input[type="checkbox"]:checked~span::before {
-    content: "[x] ";
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgba(32, 32, 32, 0.80);
+}
+
+::-webkit-scrollbar-thumb {
+    background: lightgreen;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: green;
 }

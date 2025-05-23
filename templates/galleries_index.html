@@ -26,8 +26,14 @@
 
     {% for folder in folders %}
     <div class="layout">
-        <h3><a href="/gallery/{{folder.name}}">{{folder.name}}</a></h3>
+        <h3><a href="/gallery/{{folder.name}}">{{folder.name}} (open folder)</a></h3>
         {{folder.readme_html}}
+        <p>
+            <img src="{{folder.thumbnail.absolute_url}}" style="max-width: 100%; max-height: 100%" loading="lazy">
+            <br>
+            /{{folder.name}}/<a href="{{folder.thumbnail.absolute_url}}">{{folder.thumbnail.filename}}</a> -
+            <a href="/gallery/{{folder.name}}">view all images.</a>
+        </p>
     </div>
     {% endfor %}
 

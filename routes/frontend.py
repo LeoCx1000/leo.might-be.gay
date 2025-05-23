@@ -11,6 +11,7 @@ from litestar import MediaType, Request, Router, get
 from litestar.exceptions import HTTPException
 from litestar.response import ServerSentEvent, Template
 from markupsafe import Markup
+import random
 
 import config
 
@@ -116,14 +117,15 @@ async def projects(request: Request) -> Template:
     return Template(template_name="projects.html")
 
 
-class Folder(NamedTuple):
-    name: str
-    readme_html: Markup
-
-
 class Image(NamedTuple):
     absolute_url: str
     filename: str
+
+
+class Folder(NamedTuple):
+    name: str
+    readme_html: Markup
+    thumbnail: Image | None = None
 
 
 def make_readme(folder: Path):
@@ -133,25 +135,33 @@ def make_readme(folder: Path):
     return do_mark_safe(str(mistune.html(file.read_text())))
 
 
+def get_images_from_folder(folder: Path, sort: bool = True):
+    images = (
+        sorted(folder.iterdir(), key=lambda i: i.name, reverse=True)
+        if sort
+        else folder.iterdir()
+    )
+
+    return [
+        Image(
+            filename=image.name,
+            absolute_url=f"/galleries/{folder.name}/{image.name}",
+        )
+        for image in images
+        if image.is_file() and image.name != "README.md"
+    ]
+
+
 @get("/gallery/{folder_name:str}")
 async def get_folder(folder_name: str) -> Template:
     folder = GALLERIES_FOLDER / folder_name
     if not (folder_name.isalnum() and folder.exists() and folder.is_dir()):
         raise HTTPException(status_code=404)
 
-    images = [
-        Image(
-            filename=image.name,
-            absolute_url=f"/galleries/{folder_name}/{image.name}",
-        )
-        for image in sorted(folder.iterdir(), key=lambda i: i.name, reverse=True)
-        if image.is_file() and image.name != "README.md"
-    ]
-
     return Template(
         "gallery.html",
         context=dict(
-            images=images,
+            images=get_images_from_folder(folder),
             folder=Folder(
                 name=folder_name,
                 readme_html=make_readme(folder),
@@ -163,7 +173,11 @@ async def get_folder(folder_name: str) -> Template:
 @get("/gallery", sync_to_thread=True)
 def gallery(request: Request) -> Template:
     folders = [
-        Folder(name=folder.name, readme_html=make_readme(folder))
+        Folder(
+            name=folder.name,
+            readme_html=make_readme(folder),
+            thumbnail=random.choice(get_images_from_folder(folder)),
+        )
         for folder in sorted(GALLERIES_FOLDER.iterdir(), key=lambda i: i.name)
         if folder.is_dir()
     ]

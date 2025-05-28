@@ -3,7 +3,7 @@ body {
 }
 
 
-.content {
+section {
     max-width: fit-content;
     min-width: min(95vw, var(--main-width));
 }

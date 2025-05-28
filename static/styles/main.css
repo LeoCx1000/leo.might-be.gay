@@ -127,6 +127,10 @@ input[type="checkbox"]~span::before {
     content: "[ ] ";
 }
 
+input[type="checkbox"]:checked~span::before {
+    content: "[x] ";
+}
+
 ::-webkit-scrollbar {
     width: 10px;
     height: 10px;

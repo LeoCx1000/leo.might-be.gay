@@ -36,7 +36,7 @@ nav {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 5px;
 
     align-items: center;
     color: var(--nav-text-color);
@@ -78,6 +78,17 @@ nav {
     padding: 0px;
     margin-right: auto;
     font-size: xx-large;
+}
+
+.nav-separator:not(:last-of-type) {
+    border: 1px dashed;
+    height: 40%;
+    width: 0;
+    padding: 0;
+}
+
+.nav-separator:last-of-type {
+    display: none;
 }
 
 /* Mobile css */

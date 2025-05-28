@@ -3,6 +3,7 @@ import express from 'express';
 import { readFileSync } from 'fs';
 
 const app = express();
+app.use(express.json({ strict: false }));
 
 
 app.get("/hl", async (req, res, next) => {
@@ -12,6 +13,16 @@ app.get("/hl", async (req, res, next) => {
     var split = file.split('.');
     var html = await codeToHtml(contents, {
         lang: req.query.lang || split[split.length - 1], theme: req.query.theme || 'vitesse-dark'
+    });
+    res.send(html);
+});
+
+app.post("/hltext", async (req, res, next) => {
+    let contents = req.body;
+    console.log(contents, req.query.lang);
+    console.log(typeof contents);
+    var html = await codeToHtml(contents.code, {
+        lang: contents.lang, theme: contents.theme || 'vitesse-dark'
     });
     res.send(html);
 });

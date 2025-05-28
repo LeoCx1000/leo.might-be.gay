@@ -14,11 +14,10 @@ BASE_PATH = pathlib.Path("/www/files")
 async def render_code_block(request: Request, filename: str) -> Template:
     file = BASE_PATH / filename.removeprefix("/")
 
-    common = pathlib.Path(os.path.commonprefix([BASE_PATH, file]))
+    common = pathlib.Path(os.path.commonprefix([BASE_PATH, file.resolve()]))
 
     if common != BASE_PATH or not file.exists() or not file.is_file():
         raise HTTPException(detail="File does not exist.", status_code=404)
-
     try:
         file.read_text()
     except:

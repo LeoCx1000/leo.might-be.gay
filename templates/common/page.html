@@ -5,6 +5,8 @@
     <link rel="preload" href="/static/scripts/htmx.min.js" as="script" crossorigin>
     <link rel="preload" href="/static/scripts/htmx-sse.min.js" as="script" crossorigin>
     <link rel="stylesheet" href="/static/styles/main.css">
+    <link href="/static/styles/navbar.css" rel="stylesheet" />
+    <script src="/static/scripts/navbar.js" type="module"></script>
     <title>{% block title %}Leo's Collection of Random.{% endblock %}</title>
 
     <!-- Generated via some random website (I forgot its name sorry) -->
@@ -20,10 +22,34 @@
 
 
 <body>
-    {% block nav %}{% include "common/navbar.html" %}{% endblock %}
+    {% block nav %}
+    <nav>
+        <div class="nav-container">
+            <div class="nav-elements">
+                <span class="dashed title"><a href="/">Leo's Collection of Random.</a></span>
+            </div>
+            <div class="nav-elements">
+                {% for element in navbar() %}
+                <a href="{{element.href}}" class="{% if element.current %} nav-current{% endif %}">{{element.title}}</a>
+                <div class="nav-separator"></div>
+                {% endfor %}
+            </div>
+        </div>
+    </nav>
+
+    <div class="nav-banner-secondary nav-banner-hidden" id="navbar-wip-banner" role="alert">
+        <div class="nav-container nav-elements nav-banner-secondary" style="color: white; font-size: medium;">
+            <span> This site is under construction. {{links.contact()}} if you notice anything weird. </span>
+            <span class="clickable" id="navbar-wip-dismiss">Dismiss</span>
+        </div>
+    </div>
+    {% endblock %}
 
     <div class="content">
         {% block body %}
+        <section>
+            {{content}}
+        </section>
         {% endblock %}
     </div>
 

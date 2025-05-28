@@ -42,14 +42,14 @@ a:link,
 .clickable {
     cursor: pointer;
     color: inherit;
-    text-decoration: underline dashed 2px lightgreen;
+    text-decoration: underline dashed 2px rgb(106, 172, 106);
 }
 
 a:hover,
 .clickable:hover {
     font-style: italic;
     filter: drop-shadow(0.5px 0.5px 0px green);
-    text-decoration-color: lightgreen;
+    text-decoration-color: rgb(101, 174, 101);
     text-decoration-style: solid;
 }
 

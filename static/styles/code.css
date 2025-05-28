@@ -1,14 +1,3 @@
-body {
-    font-size: large;
-}
-
-
-section {
-    max-width: fit-content;
-    min-width: min(95vw, var(--main-width));
-}
-
-
 code {
     display: block;
     box-sizing: content-box;

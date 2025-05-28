@@ -124,12 +124,12 @@ async def serve_lastfm_htmx() -> ServerSentEvent:
 
 
 @get("/", media_type=MediaType.HTML)
-async def home(request: Request) -> Template:
+async def home() -> Template:
     return Template(template_name="index.html", context={"age": age()})
 
 
 @get("/projects", media_type=MediaType.HTML)
-async def projects(request: Request) -> Template:
+async def projects() -> Template:
     return Template(template_name="projects.html")
 
 
@@ -289,7 +289,7 @@ def weblog() -> Template:
 
 
 @get("/weblog/{location:path}")
-async def single_weblog(location: str) -> Template | Redirect:
+async def single_weblog(request: Request, location: str) -> Template | Redirect:
     year, sep, file = location.removeprefix("/").partition("/")
 
     if not year.isdigit() or len(year) != 4:
@@ -311,10 +311,11 @@ async def single_weblog(location: str) -> Template | Redirect:
     if not match:
         raise HTTPException(status_code=404)
 
+    month = match.group("month")
+    day = match.group("day")
+
     file = folder / (file + ".md")
     if not file.exists():
-        month = match.group("month")
-        day = match.group("day")
         file = next(
             filter(
                 lambda file: file.name.startswith(f"{month}-{day}"), folder.iterdir()
@@ -329,7 +330,13 @@ async def single_weblog(location: str) -> Template | Redirect:
         "weblog.html",
         context={
             "content": render_markdown(file.read_text()),
-            "title": match.group("title").replace("-", " ").title(),
+            "file": File(
+                date=f"{year}-{month}-{day}",
+                month=month,
+                day=day,
+                href=str(request.url),  # type: ignore - you do exist don't lie to yourself.
+                title=match.group("title").replace("-", " ").title(),
+            ),
         },
     )
 

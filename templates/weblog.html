@@ -1,11 +1,15 @@
 {% extends "common/page.html" %}
 
 {% block head %}
-<link href="/static/styles/code.css" rel="stylesheet" />
-<meta property="og:site_name" content="Leo's Collection of Random" />
-<meta property="og:type" content="website" />
-<meta property="og:title" content="{{title}}" />
-<meta property="og:url" content="{{request.url}}" />
 {%endblock%}
 
-{% block title %}{{ title }}{% endblock %}
+{% block title %}{{ file.title }}{% endblock %}
+
+{% block body %}
+{{super()}}
+<section>
+    <p>Published on {{file.date}}. Opinions? Criticism? <a
+            href="mailto:weblog@leo.might-be.gay?body={{ ('\n\n\n'+('-'*16)+'\nWeblog: ' + file.date + ' ' + file.title + '\nref: ' + file.href) | quote}}"
+            target="_blank">tell me!</a></p>
+</section>
+{%endblock%}

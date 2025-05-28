@@ -13,12 +13,14 @@ from litestar.template.config import TemplateConfig
 
 from routes import files, frontend, music_badges, private
 from utils.links import Links
+from urllib.parse import quote_plus
 
 
 def register_engine_callables(engine: JinjaTemplateEngine):
     engine.register_template_callable("navbar", frontend.navbar)
 
-    engine.engine.globals.update(dict(links=Links))
+    engine.engine.globals.update(links=Links)
+    engine.engine.filters.update(quote=lambda s: quote_plus(s))
 
 
 def handle_exception(request: Request, exc: HTTPException) -> Template:

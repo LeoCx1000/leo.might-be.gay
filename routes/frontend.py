@@ -18,7 +18,7 @@ import config
 REPL = {"and": "&", "_": " "}
 PATTERN = re.compile("|".join(re.escape(k) for k in REPL), flags=re.IGNORECASE)
 LFM_LOGO = "<img src='/static/graphics/lastfm.svg' style='height:1em; vertical-align:middle; padding-bottom: 0.1em'/>"
-GALLERIES_FOLDER = Path("/www/files/galleries")
+GALLERIES_FOLDER = Path("/www/files/gallery")
 
 
 class LastFmPoller:
@@ -145,7 +145,7 @@ def get_images_from_folder(folder: Path, sort: bool = True):
     return [
         Image(
             filename=image.name,
-            absolute_url=f"/galleries/{folder.name}/{image.name}",
+            absolute_url=f"/gallery/{folder.name}/{image.name}",
         )
         for image in images
         if image.is_file() and image.name != "README.md"

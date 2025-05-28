@@ -1,22 +1,16 @@
-<!doctype html>
+{% extends "common/page.html" %}
 
-<head>
-    {% include "common/head.html" %}
-    <link href="/static/styles/code.css" rel="stylesheet" />
-    <script src="/static/scripts/h2CopyOnClick.js" type="module"></script>
-    <title>{{ filename }}</title>
-</head>
+{% block head %}
+<link href="/static/styles/code.css" rel="stylesheet" />
+{%endblock%}
 
+{% block title %}{{filename}}{% endblock %}
 
-<body>
-    {% include "common/navbar.html" %}
-
-    <div class="layout detect-checkbox">
-
-        <h2>Viewing <b class="dashed">{{ filename }}</b> (<a href="/{{filename}}">view raw</a>) </h2>
-        <input type="checkbox" id="text-wrap"><span>toggle line wrap.</span>
-        {{ html | safe }}
-        <p>Generated with <a href="https://shiki.style/">shiki.js</a>.</p>
-
-    </div>
-</body>
+{% block body %}
+<section class="detect-checkbox">
+    <h2>Viewing <b class="dashed">{{ filename }}</b> (<a href="/{{filename}}">view raw</a>) </h2>
+    <input type="checkbox" id="text-wrap"><span>toggle line wrap.</span>
+    {{ html | safe }}
+    <p>Generated with <a href="https://shiki.style/">shiki.js</a>.</p>
+</section>
+{% endblock %}

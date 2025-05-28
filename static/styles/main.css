@@ -7,8 +7,6 @@
 
 }
 
-
-
 body {
     scroll-padding-top: 85px;
 
@@ -18,7 +16,7 @@ body {
 
 }
 
-.layout {
+section {
     position: inherit;
     background-color: rgba(30, 30, 30, 0.80);
 

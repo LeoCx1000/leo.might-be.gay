@@ -1,17 +1,8 @@
-<!doctype html>
-
-<head>
-    {% include "common/head.html" %}
-    <script src="/static/scripts/h2CopyOnClick.js" type="module"></script>
-    <title>{{error}}</title>
-</head>
-
-
-<body>
-    {% include "common/navbar.html" %}
-
-    <div class="layout">
-
-        <h2>Well, this is awkward...</h2>
-        <p>{{error}}. Return {{links.home()}}.</p>
-</body>
+{% extends "common/page.html" %}
+{% block title %}{{error}}{% endblock %}
+{% block body %}
+<section>
+    <h2>Well, this is awkward...</h2>
+    <p>{{error}}. Return {{links.home()}}.</p>
+</section>
+{% endblock %}

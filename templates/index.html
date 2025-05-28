@@ -1,99 +1,93 @@
-<!doctype html>
+{% extends "common/page.html" %}
 
-<head>
-    {% include "common/head.html" %}
+{% block head %}
+<script src="/static/scripts/h2CopyOnClick.js" type="module"></script>
+<script src="/static/scripts/htmx.min.js"></script>
+<script src="/static/scripts/htmx-sse.min.js"></script>
+{% endblock %}
 
-    <script src="/static/scripts/h2CopyOnClick.js" type="module"></script>
-    <script src="/static/scripts/htmx.min.js"></script>
-    <script src="/static/scripts/htmx-sse.min.js"></script>
-</head>
+{% block body %}
+<section>
 
+    <h2><a href="#hello" id="hello">Hello.</a></h2>
 
-<body>
+    <p>Name's <dashed>Leonardo</dashed>, {{age}} (he/him/any)<br>My username is usually <b><i>LeoCx1000</i></b></p>
+    <div hx-ext="sse" sse-connect="/api/lastfm-html" sse-swap="lastfm-html">
+        <p><img src='/static/graphics/lastfm.svg' style="height:1em; vertical-align:middle; padding-bottom: 0.1em" />
+            Listening to <i>nothing rn...</i></p>
+    </div>
 
-    {% include "common/navbar.html" %}
+    <h3>Stuff that I enjoy...</h3>
+    <ul>
+        <li><b>Coding</b> random projects. Mainly in {{links.python()}}, but whatever's convenient. I used to do
+            {{links.arduino()}} stuff, but it's been awhile since I've had an excuse to. I want to learn
+            {{links.godot()}} because it looks nice for creating GUIs, apps and games.</li>
+        <li><b>Animals</b>. I love 'em! I have 2 cats and 4 dogs. Used to have a bunny too, and some fish. Can you
+            pet fish? Absolutely! But should you?</li>
+        <li>Watching mostly <b>anime</b>. Fuck I spend too much time on this but hey, it's a nice escape from
+            reality and a lot of fun! (Feel free to recommend me stuff)</li>
+        <li>Reading <b>Books</b>. Mostly Japanese light novels which I track on my {{links.anilist()}}. I'm also
+            currently reading <i class="dashed">The Hitchhiker's Guide to the Galaxy</i> and other stuff.</li>
+    </ul>
 
-    <div class="layout">
+    <h3>Shit I don't like...</h3>
+    <ul>
+        <li><b>Loud noises</b>. Just why? Why would you go to a concert when there's home?</li>
+        <li><b>Myself</b>, but only some days.</li>
+        <li><b>Bitter food</b>. I prefer <i>normal</i> taste profiles.</li>
+        <li>How <b>Corporations</b> and <b>Artificial Intelligence</b> have ruined the internet, and now everything
+            is algorithmically catered and fed to you from one of a handful of content providers. Individualism is
+            dying and everyone follows shallow trends that are cherry-picked from mountains of content, each trying
+            to leave a mark but getting drowned in the noise. Oops didn't mean to get political~</li>
+        <li>How <b>I contribute</b> to the above. (trying to improve)</li>
+    </ul>
 
-        <h2><a href="#hello" id="hello">Hello.</a></h2>
+</section>
 
-        <p>Name's <dashed>Leonardo</dashed>, {{age}} (he/him/any)<br>My username is usually <b><i>LeoCx1000</i></b></p>
-        <div hx-ext="sse" sse-connect="/api/lastfm-html" sse-swap="lastfm-html">
-            <p><img src='/static/graphics/lastfm.svg'
-                    style="height:1em; vertical-align:middle; padding-bottom: 0.1em" />
-                Listening to <i>nothing rn...</i></p>
+<section>
+    <h2><a href="#contacts" id="contacts">Socials?</a></h2>
+    <p>I'm not <i>really</i> the social type, but there are a few places where you can find me online, which I'll
+        list below. Some of them aren't even <i>social</i> per-se, but just accounts that I actively use.</p>
+    <ul>
+        <li><b>{{links.discord()}}</b> - My community, I am often active here.</li>
+        <li><b>{{links.github()}}</b> - Where I host most of my programming work.</li>
+        <li><b>{{links.anilist()}}</b> - Peek into my addiction- I mean- I what anime I watch.</li>
+        <li><b>{{links.mal()}}</b> - An automatic mirror of my {{links.anilist()}}. I do not actively use this.</li>
+        <li><b>{{links.lastfm()}}</b> - If you want to see what my music taste is like.</li>
+        <li><b>{{links.steam()}}</b> - For games and stuff, but I'm not much of a gamer.</li>
+        <li><b>{{links.reddit()}}</b> - I browse memes and comment sometimes.</li>
+        <li><b><i class="dashed">hey @ &ltthis domain&gt</i></b> - My email, don't spam it please!</li>
+        <li><i>And more... but these are the biggest ones.</i></li>
+    </ul>
+</section>
+
+<section>
+    <h2><a href="#site" id="site">About this site.</a></h2>
+    <p> This site is written in <dashed>html+css+js</dashed>, with some of {{links.htmx()}}. It's served to you
+        using the python webserver library {{links.litestar()}}, and templated with {{links.jinja2()}}. Some
+        sections are generated using the markdown parser {{links.mistune()}}. The source code is public and
+        available {{links.source("here")}}.</p>
+    <p>I test using the firefox browser, both on phone and computer. If you notice anything weird, especially when
+        using chromium-based browsers, please {{links.contact()}} me.</p>
+</section>
+
+<section class="icons">
+    <!-- Links to other cool sites I've found. -->
+    <a href="/gus.jpg"><img src="/static/graphics/88x31.png" class="_88x31"
+            alt="The text &quot;Leo RANDOM BULLSHIT&quot; on a dark green background. There is a picture of the site owner's cat in the bottom right."></a>
+    <a href="//brainmade.org" target="_blank">
+        <div class="_88x31">
+            <img alt="The Brainmade Mark" src="/static/graphics/brainmade.svg" width="82" height="25">
         </div>
+    </a>
+    <a href="//cadence.moe/blog/2024-10-05-created-by-a-human-badges">
+        <div class="_88x31">
+            <img alt="The Brainmade Mark" src="/static/graphics/cadence.svg" width="88" height="31">
+        </div>
+    </a>
+    <a href="https://cadence.moe" target="_blank"><img src="https://cadence.moe/static/img/cadence_now.png"
+            alt="The text &quot;cadence now!&quot; on a purple background. There is a moon-shaped logo on the left side and a tiny star in the bottom right."
+            class="_88x31"></a>
+</section>
 
-        <h3>Stuff that I enjoy...</h3>
-        <ul>
-            <li><b>Coding</b> random projects. Mainly in {{links.python()}}, but whatever's convenient. I used to do
-                {{links.arduino()}} stuff, but it's been awhile since I've had an excuse to. I want to learn
-                {{links.godot()}} because it looks nice for creating GUIs, apps and games.</li>
-            <li><b>Animals</b>. I love 'em! I have 2 cats and 4 dogs. Used to have a bunny too, and some fish. Can you
-                pet fish? Absolutely! But should you?</li>
-            <li>Watching mostly <b>anime</b>. Fuck I spend too much time on this but hey, it's a nice escape from
-                reality and a lot of fun! (Feel free to recommend me stuff)</li>
-            <li>Reading <b>Books</b>. Mostly Japanese light novels which I track on my {{links.anilist()}}. I'm also
-                currently reading <i class="dashed">The Hitchhiker's Guide to the Galaxy</i> and other stuff.</li>
-        </ul>
-
-        <h3>Shit I don't like...</h3>
-        <ul>
-            <li><b>Loud noises</b>. Just why? Why would you go to a concert when there's home?</li>
-            <li><b>Myself</b>, but only some days.</li>
-            <li><b>Bitter food</b>. I prefer <i>normal</i> taste profiles.</li>
-            <li>How <b>Corporations</b> and <b>Artificial Intelligence</b> have ruined the internet, and now everything
-                is algorithmically catered and fed to you from one of a handful of content providers. Individualism is
-                dying and everyone follows shallow trends that are cherry-picked from mountains of content, each trying
-                to leave a mark but getting drowned in the noise. Oops didn't mean to get political~</li>
-            <li>How <b>I contribute</b> to the above. (trying to improve)</li>
-        </ul>
-
-    </div>
-
-    <div class="layout">
-        <h2><a href="#contacts" id="contacts">Socials?</a></h2>
-        <p>I'm not <i>really</i> the social type, but there are a few places where you can find me online, which I'll
-            list below. Some of them aren't even <i>social</i> per-se, but just accounts that I actively use.</p>
-        <ul>
-            <li><b>{{links.discord()}}</b> - My community, I am often active here.</li>
-            <li><b>{{links.github()}}</b> - Where I host most of my programming work.</li>
-            <li><b>{{links.anilist()}}</b> - Peek into my addiction- I mean- I what anime I watch.</li>
-            <li><b>{{links.mal()}}</b> - An automatic mirror of my {{links.anilist()}}. I do not actively use this.</li>
-            <li><b>{{links.lastfm()}}</b> - If you want to see what my music taste is like.</li>
-            <li><b>{{links.steam()}}</b> - For games and stuff, but I'm not much of a gamer.</li>
-            <li><b>{{links.reddit()}}</b> - I browse memes and comment sometimes.</li>
-            <li><b><i class="dashed">hey @ &ltthis domain&gt</i></b> - My email, don't spam it please!</li>
-            <li><i>And more... but these are the biggest ones.</i></li>
-        </ul>
-    </div>
-
-    <div class="layout">
-        <h2><a href="#site" id="site">About this site.</a></h2>
-        <p> This site is written in <dashed>html+css+js</dashed>, with some of {{links.htmx()}}. It's served to you
-            using the python webserver library {{links.litestar()}}, and templated with {{links.jinja2()}}. Some
-            sections are generated using the markdown parser {{links.mistune()}}. The source code is public and
-            available {{links.source("here")}}.</p>
-        <p>I test using the firefox browser, both on phone and computer. If you notice anything weird, especially when
-            using chromium-based browsers, please {{links.contact()}} me.</p>
-    </div>
-
-    <div class="layout icons">
-        <!-- Links to other cool sites I've found. -->
-        <a href="/gus.jpg"><img src="/static/graphics/88x31.png" class="_88x31"
-                alt="The text &quot;Leo RANDOM BULLSHIT&quot; on a dark green background. There is a picture of the site owner's cat in the bottom right."></a>
-        <a href="//brainmade.org" target="_blank">
-            <div class="_88x31">
-                <img alt="The Brainmade Mark" src="/static/graphics/brainmade.svg" width="82" height="25">
-            </div>
-        </a>
-        <a href="//cadence.moe/blog/2024-10-05-created-by-a-human-badges">
-            <div class="_88x31">
-                <img alt="The Brainmade Mark" src="/static/graphics/cadence.svg" width="88" height="31">
-            </div>
-        </a>
-        <a href="https://cadence.moe" target="_blank"><img src="https://cadence.moe/static/img/cadence_now.png"
-                alt="The text &quot;cadence now!&quot; on a purple background. There is a moon-shaped logo on the left side and a tiny star in the bottom right."
-                class="_88x31"></a>
-    </div>
-</body>
+{% endblock %}

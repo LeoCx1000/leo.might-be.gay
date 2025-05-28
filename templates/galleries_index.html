@@ -1,47 +1,40 @@
-<!doctype html>
+{% extends "common/page.html" %}
+{% block style %}
+<style>
+    h3::before {
+        content: '/ '
+    }
 
-<head>
-    {% include "common/head.html" %}
-    <style>
-        h3::before {
-            content: '/ '
-        }
-
-        ul {
-            list-style-type: "/ ";
-        }
-    </style>
-</head>
+    ul {
+        list-style-type: "/ ";
+    }
+</style>
+{% endblock %}
 
 
-<body>
+{% block body %}
+<section>
 
-    {% include "common/navbar.html" %}
+    <h2>Image galleries.</h2>
+    <p>Cool collections of images. Here are all the folders; see below (or inside) for a description of each.</p>
+    <ul>
+        {% for folder in folders %}
+        <li><a href="/gallery/{{folder.name}}">{{folder.name}}</a></li>
+        {% endfor %}
+    </ul>
+</section>
 
-    <div class="layout">
+{% for folder in folders %}
+<section>
+    <h3><a href="/gallery/{{folder.name}}">{{folder.name}} (open folder)</a></h3>
+    {{folder.readme_html}}
+    <p>
+        <img src="{{folder.thumbnail.absolute_url}}" style="max-width: 100%; max-height: 100%" loading="lazy">
+        <br>
+        /{{folder.name}}/<a href="{{folder.thumbnail.absolute_url}}">{{folder.thumbnail.filename}}</a> -
+        <a href="/gallery/{{folder.name}}">view all images.</a>
+    </p>
+</section>
+{% endfor %}
 
-        <h2>Image galleries.</h2>
-        <p>Cool collections of images. Here are all the folders; see below (or inside) for a description of each.</p>
-        <ul>
-            {% for folder in folders %}
-            <li><a href="/gallery/{{folder.name}}">{{folder.name}}</a></li>
-            {% endfor %}
-        </ul>
-    </div>
-
-    {% for folder in folders %}
-    <div class="layout">
-        <h3><a href="/gallery/{{folder.name}}">{{folder.name}} (open folder)</a></h3>
-        {{folder.readme_html}}
-        <p>
-            <img src="{{folder.thumbnail.absolute_url}}" style="max-width: 100%; max-height: 100%" loading="lazy">
-            <br>
-            /{{folder.name}}/<a href="{{folder.thumbnail.absolute_url}}">{{folder.thumbnail.filename}}</a> -
-            <a href="/gallery/{{folder.name}}">view all images.</a>
-        </p>
-    </div>
-    {% endfor %}
-
-
-
-</body>
+{% endblock %}

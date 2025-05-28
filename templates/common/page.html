@@ -1,0 +1,30 @@
+<!doctype html>
+
+<head>
+    {% block headers %}
+    <link rel="preload" href="/static/scripts/htmx.min.js" as="script" crossorigin>
+    <link rel="preload" href="/static/scripts/htmx-sse.min.js" as="script" crossorigin>
+    <link rel="stylesheet" href="/static/styles/main.css">
+    <title>{% block title %}Leo's Collection of Random.{% endblock %}</title>
+
+    <!-- Generated via some random website (I forgot its name sorry) -->
+    <link rel="icon" type="image/png" href="/static/graphics/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/static/graphics/favicon.svg" />
+    <link rel="shortcut icon" href="/static/graphics/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/graphics/apple-touch-icon.png" />
+    <link rel="manifest" href="/static/site.webmanifest" />
+    {% endblock %}
+    {% block head %}{%endblock%}
+    {% block style %}{% endblock %}
+</head>
+
+
+<body>
+    {% block nav %}{% include "common/navbar.html" %}{% endblock %}
+
+    <div class="content">
+        {% block body %}
+        {% endblock %}
+    </div>
+
+</body>

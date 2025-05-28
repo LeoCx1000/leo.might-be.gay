@@ -1,36 +1,26 @@
-<!doctype html>
+{% extends "common/page.html" %}
+{% block style %}
+<style>
+    h3::before {
+        content: '/ '
+    }
 
-<head>
-    {% include "common/head.html" %}
-    <style>
-        h3::before {
-            content: '/ '
-        }
+    h2::after {
+        display: none;
+    }
+</style>
+{% endblock %}
 
-        h2::after {
-            display: none;
-        }
-    </style>
-</head>
+{% block body %}
+<section>
 
-
-<body>
-
-    {% include "common/navbar.html" %}
-
-    <div class="layout">
-
-        <h2>{{folder.name}} <<< <a href="/gallery">back to index</a></h2>
-        {{folder.readme_html}}
-    </div>
-    {% for image in images %}
-    <div class="layout">
-        <h3><a href="{{image.absolute_url}}">{{image.filename}}</a></h3>
-        <p><img src="{{image.absolute_url}}" style="max-width: 100%; max-height: 100%" loading="lazy"></p>
-    </div>
-    {% endfor %}
-
-
-
-
-</body>
+    <h2>{{folder.name}} <<< <a href="/gallery">back to index</a></h2>
+    {{folder.readme_html}}
+</section>
+{% for image in images %}
+<section>
+    <h3><a href="{{image.absolute_url}}">{{image.filename}}</a></h3>
+    <p><img src="{{image.absolute_url}}" style="max-width: 100%; max-height: 100%" loading="lazy"></p>
+</section>
+{% endfor %}
+{% endblock %}

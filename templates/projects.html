@@ -1,53 +1,52 @@
-<!doctype html>
+{% extends "common/page.html" %}
 
-<head>
-    {% include "common/head.html" %}
-    <script src="/static/scripts/h2CopyOnClick.js" type="module"></script>
-</head>
+{% block head %}
+<script src="/static/scripts/h2CopyOnClick.js" type="module"></script>
+{%endblock%}
 
+{% block title %}{{filename}}{% endblock %}
 
-<body>
-    {% include "common/navbar.html" %}
+{% block body %}
+<section>
+    <h2><a href="#intro" id="intro">My Public Projects.</a></h2>
+    <p>Here's where I showcase (or list) my creations and random code snippets. </p>
+</section>
+<section>
+    <h2><a href="#duckbot" id="duckbot">DuckBot - A Multipurpose Discord Bot.</a></h2>
+    <p><a href="//duck-bot.com/invite">Invite</a> - <a href="//github.com/DuckBot-Discord/DuckBot">Source</a></p>
+    <p>One of my first projects, a discord bot with no real scope. I just threw a bunch of stuff as I kept exploring
+        how Python works, and getting familiar with it. It does your usual stuff like bans, logs, and whatever else
+        I felt like adding over the years. I encourage you add it to your server, and run the
+        <dashed>db.help</dashed> command to actually explore all of its features.
+    </p>
+</section>
 
-    <div class="layout">
-        <h2><a href="#intro" id="intro">My Public Projects.</a></h2>
-        <p>Here's where I showcase (or list) my creations and random code snippets. </p>
-    </div>
-    <div class="layout">
-        <h2><a href="#duckbot" id="duckbot">DuckBot - A Multipurpose Discord Bot.</a></h2>
-        <p><a href="//duck-bot.com/invite">Invite</a> - <a href="//github.com/DuckBot-Discord/DuckBot">Source</a></p>
-        <p>One of my first projects, a discord bot with no real scope. I just threw a bunch of stuff as I kept exploring
-            how Python works, and getting familiar with it. It does your usual stuff like bans, logs, and whatever else
-            I felt like adding over the years. I encourage you add it to your server, and run the
-            <dashed>db.help</dashed> command to actually explore all of its features.
-        </p>
-    </div>
+<section>
+    <h2><a href="#d.py-scripts" id="d.py-scripts">Discord.py Scripts and Snippets.</a></h2>
+    <p>I <i>maintain*</i> a handful of snippets and code examples for the {{links.dpy()}} library, an API wrapper
+        for
+        discord. I've created these over the years, simply for them to be shared in the {{links.dpy_inv()}}, where I
+        am staff.</p>
+    </p>
+    <ul>
+        <li><a href="https://gist.github.com/LeoCx1000/5ddb29ff6ac90042db6f44aa0f8f977f"> cli_entrypoint.py</a> -
+            Shows how to use an <i>extremely basic</i> CLI entrypoint for a python script. In this case, for syncing
+            a bot's slash commands to discord.</li>
+        <li><a href="https://gist.github.com/LeoCx1000/021dc52981299b95ea7790416e4f5ca4"> mentionable_tree.py</a> -
+            A subclassed CommandTree that implements methods for fetching an AppCommand's mention via name, or by
+            passing a command instance.
+        </li>
+        <li><a href="https://gist.github.com/LeoCx1000/aa9461c73b1f0dc2d99a5b1a6d74d421"> async_cooldown.py</a> - A
+            cooldown decorator for message commands that allows for coroutine functions to be passed as the bucket.
+        </li>
 
-    <div class="layout">
-        <h2><a href="#d.py-scripts" id="d.py-scripts">Discord.py Scripts and Snippets.</a></h2>
-        <p>I <i>maintain*</i> a handful of snippets and code examples for the {{links.dpy()}} library, an API wrapper
-            for
-            discord. I've created these over the years, simply for them to be shared in the {{links.dpy_inv()}}, where I
-            am staff.</p>
-        </p>
-        <ul>
-            <li><a href="https://gist.github.com/LeoCx1000/5ddb29ff6ac90042db6f44aa0f8f977f"> cli_entrypoint.py</a> -
-                Shows how to use an <i>extremely basic</i> CLI entrypoint for a python script. In this case, for syncing
-                a bot's slash commands to discord.</li>
-            <li><a href="https://gist.github.com/LeoCx1000/021dc52981299b95ea7790416e4f5ca4"> mentionable_tree.py</a> -
-                A subclassed CommandTree that implements methods for fetching an AppCommand's mention via name, or by
-                passing a command instance.
-            </li>
-            <li><a href="https://gist.github.com/LeoCx1000/aa9461c73b1f0dc2d99a5b1a6d74d421"> async_cooldown.py</a> - A
-                cooldown decorator for message commands that allows for coroutine functions to be passed as the bucket.
-            </li>
-
-            <li><a href="https://gist.github.com/LeoCx1000/1cc9c73fd955455362fef3eef79e1260">
-                    multiple_concurrencies.py</a> - An example on how to use multiple commands.MaxConcurrency for a
-                single command.</li>
-        </ul>
-        <p style="font-size: large;"><i>*I don't actually use some of these, but I will fix bugs if someone tells me.
-                If you happen to spot an issue, leave a comment (or better yet- join my {{links.discord()}} or the
-                {{links.dpy_inv()}} and ping me! Don't worry, I don't bite lol)</i>
-    </div>
-</body>
+        <li><a href="https://gist.github.com/LeoCx1000/1cc9c73fd955455362fef3eef79e1260">
+                multiple_concurrencies.py</a> - An example on how to use multiple commands.MaxConcurrency for a
+            single command.</li>
+    </ul>
+    <p style="font-size: large;"><i>*I don't actually use some of these, but I will fix bugs if someone tells me.
+            If you happen to spot an issue, leave a comment (or better yet- join my {{links.discord()}} or the
+            {{links.dpy_inv()}} and ping me! Don't worry, I don't bite lol)</i>
+    </p>
+</section>
+{% endblock %}

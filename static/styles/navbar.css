@@ -7,6 +7,8 @@ nav {
     --nav-background: rgb(25, 25, 25);
     --nav-text-color: lightgreen;
     --nav-text-active: lime;
+    --nav-decoration-weight: 2px;
+    --nav-circles-size: 2px;
 
     font-size: x-large;
     position: sticky;
@@ -49,7 +51,7 @@ nav {
     >a {
         color: inherit;
         text-decoration: none;
-        border: 2px dashed var(--nav-background);
+        border: var(--nav-decoration-weight) dashed var(--nav-background);
     }
 
     >.nav-current {
@@ -81,10 +83,12 @@ nav {
 }
 
 .nav-separator:not(:last-of-type) {
-    border: 1px dashed;
-    height: 40%;
-    width: 0;
-    padding: 0;
+    border: var(--nav-circles-size) solid;
+    background-color: var(--nav-text-color);
+    height: 0.5px;
+    width: 0.5px;
+    padding: 0px;
+    border-radius: 50%;
 }
 
 .nav-separator:last-of-type {
@@ -102,6 +106,8 @@ nav {
         padding-top: 1rem;
         padding-bottom: 1rem;
         font-size: xxx-large;
+        --nav-decoration-weight: 3.5px;
+        --nav-circles-size: 5px;
     }
 
     .nav-banner-secondary {

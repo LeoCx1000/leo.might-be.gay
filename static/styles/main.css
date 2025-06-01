@@ -148,3 +148,10 @@ input[type="checkbox"]:checked~span::before {
 ::-webkit-scrollbar-thumb:hover {
     background: green;
 }
+
+blockquote {
+    margin-left: 0px;
+    padding-left: 40px;
+    border-radius: 2px;
+    border-left: 3px solid var(--font-color);
+}

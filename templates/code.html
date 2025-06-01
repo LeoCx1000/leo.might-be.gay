@@ -11,6 +11,19 @@
         max-width: fit-content;
         min-width: min(95vw, var(--main-width));
     }
+
+    /* Mobile css */
+    @media (hover: none) and (pointer: coarse) {
+        body {
+            font-size: inherit;
+        }
+
+        section {
+            max-width: fit-content;
+            min-width: min(95vw, var(--main-width));
+        }
+
+    }
 </style>
 {%endblock%}
 

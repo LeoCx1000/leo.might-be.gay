@@ -246,7 +246,7 @@ class WeblogFolder(NamedTuple):
 
 def get_files_from(folder: Path):
     files: list[File] = []
-    for file in folder.iterdir():
+    for file in sorted(folder.iterdir(), key=lambda f: f.name, reverse=True):
         if not file.is_file():
             continue
         match = FILE_NAME_RE.fullmatch(file.name)

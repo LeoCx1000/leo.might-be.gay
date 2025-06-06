@@ -26,7 +26,6 @@ class Links(Enum):
     arduino = Link("https://arduino.cc/", "Arduino")
     godot = Link("https://godotengine.org/", "Godot")
     python = Link("https://www.python.org/", "Python")
-    source = Link("https://github.com/leocx1000/leo.might-be.gay", "source")
     mistune = Link("https://htmx.org/", "mistune")
     htmx = Link("https://pypi.org/project/mistune/", "htmx")
 

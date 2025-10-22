@@ -7,8 +7,8 @@ from litestar import Litestar, Request, get
 from litestar.contrib.jinja import JinjaTemplateEngine
 from litestar.exceptions import HTTPException
 from litestar.plugins.htmx import HTMXPlugin
-from litestar.response import Redirect, Template
-from litestar.static_files import StaticFilesConfig
+from litestar.response import Template
+from litestar.static_files import create_static_files_router
 from litestar.template.config import TemplateConfig
 
 from routes import files, frontend, music_badges, private
@@ -46,6 +46,7 @@ app = Litestar(
         files.router,
         frontend.router,
         private.router,
+        create_static_files_router(path="static", directories=[Path("static")]),
     ],
     lifespan=[lifespan],
     exception_handlers={HTTPException: handle_exception},
@@ -54,9 +55,6 @@ app = Litestar(
         engine=JinjaTemplateEngine,
         engine_callback=register_engine_callables,
     ),
-    static_files_config=[
-        StaticFilesConfig(path="static", directories=[Path("static")]),
-    ],
     plugins=[HTMXPlugin()],
     openapi_config=None,
 )

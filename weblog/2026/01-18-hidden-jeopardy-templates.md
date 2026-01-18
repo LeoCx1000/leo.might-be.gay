@@ -12,6 +12,9 @@ I've made some board templates for jeopardy games and spent quite a bit of time 
 
 2. To display the wheel I use [OBS Studio](https://obsproject.com/) and [a hardware camera emulator plugin for OBS](https://github.com/dev47apps/droidcam-obs-virtual-output) because PowerPoint doesn't support virtual cameras. (you need to start it every time you open OBS under `Tools > DroidCam Virtual Output`)
 
+3. Next to each price on the main board, you will find hidden buttons (they are just coloured the same as the background). Clicking them will select the amount of money to add or remove to/from players. You can also see your currently selected amount in the bottom-right.
+
+4. Use the green/orange buttons to add/remove scores to/from the players.
 
 # Template Downloads
 

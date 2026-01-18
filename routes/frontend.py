@@ -345,8 +345,9 @@ async def single_weblog(request: Request, location: str) -> Template | Redirect:
 
     if not file:
         raise HTTPException(status_code=404)
-    if file.name.endswith(".md"):
-        return Redirect(f"/weblog/{year}/{file.name.removesuffix('.md')}")
+
+    if filename.endswith(".md"):
+        return Redirect(f"/weblog/{year}/{filename.removesuffix('.md')}")
 
     return Template(
         "weblog.html",

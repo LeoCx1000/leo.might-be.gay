@@ -13,7 +13,6 @@ from litestar.exceptions import HTTPException
 from litestar.response import ServerSentEvent, Template, Redirect
 from markupsafe import Markup
 import random
-from urllib.request import urlopen, Request
 import config
 import requests
 
@@ -147,7 +146,7 @@ class GalleryFolder(NamedTuple):
 
 class CodeBlockRenderer(mistune.HTMLRenderer):
     def block_code(self, code: str, info: str | None = None) -> str:
-        url = f"http://127.0.0.1:39389/hltext"
+        url = "http://127.0.0.1:39389/hltext"
         with requests.post(
             url,
             json=dict(code=code.rstrip(), lang=info or "txt"),
@@ -265,7 +264,7 @@ def get_files_from(folder: Path):
                 title=title.replace("-", " ").title(),
                 day=day,
                 month=month,
-                href=f"/weblog/{year}/{month}-{day}-{title}",
+                href=f"/weblog/{year}/{month}-{day}-{title.removeprefix('hidden-')}",
             )
         )
     return files
@@ -293,7 +292,7 @@ def weblog() -> Template:
 
 @get("/weblog/{location:path}")
 async def single_weblog(request: Request, location: str) -> Template | Redirect:
-    year, sep, file = location.removeprefix("/").partition("/")
+    year, sep, filename = location.removeprefix("/").partition("/")
 
     if not year.isdigit() or len(year) != 4:
         raise HTTPException(status_code=404)
@@ -310,23 +309,43 @@ async def single_weblog(request: Request, location: str) -> Template | Redirect:
             ),
         )
 
-    match = FILE_NAME_RE.fullmatch(file)
+    match = FILE_NAME_RE.fullmatch(filename)
+    month = "00"
+    day = "00"
+    title = "undefined"
     if not match:
-        raise HTTPException(status_code=404)
-
-    month = match.group("month")
-    day = match.group("day")
-
-    file = folder / (file + ".md")
-    if not file.exists():
         file = next(
-            filter(
-                lambda file: file.name.startswith(f"{month}-{day}"), folder.iterdir()
-            ),
+            filter(lambda f: f.name.endswith(filename), folder.iterdir()),
             None,
         )
-        if not file:
-            raise HTTPException(status_code=404)
+        if file:
+            match = FILE_NAME_RE.fullmatch(file.name)
+            if not match:
+                file = None
+            else:
+                month = match.group("month")
+                day = match.group("day")
+                title = match.group("title")
+    else:
+        month = match.group("month")
+        day = match.group("day")
+        title = match.group("title")
+
+        file = folder / (filename + ".md")
+        if not file.exists():
+            file = folder / f"{month}-{day}-hidden-{title}.md"
+        if not file.exists():
+            file = next(
+                filter(
+                    lambda file: file.name.startswith(f"{month}-{day}"),
+                    folder.iterdir(),
+                ),
+                None,
+            )
+
+    if not file:
+        raise HTTPException(status_code=404)
+    if file.name.endswith(".md"):
         return Redirect(f"/weblog/{year}/{file.name.removesuffix('.md')}")
 
     return Template(
@@ -338,7 +357,7 @@ async def single_weblog(request: Request, location: str) -> Template | Redirect:
                 month=month,
                 day=day,
                 href=str(request.url),  # type: ignore - you do exist don't lie to yourself.
-                title=match.group("title").replace("-", " ").title(),
+                title=title.replace("-", " ").title(),
             ),
         },
     )

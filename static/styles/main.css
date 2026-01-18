@@ -155,3 +155,7 @@ blockquote {
     border-radius: 2px;
     border-left: 3px solid var(--font-color);
 }
+
+img {
+    max-width: 100%;
+}

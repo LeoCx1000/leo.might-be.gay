@@ -315,7 +315,7 @@ async def single_weblog(request: Request, location: str) -> Template | Redirect:
     title = "undefined"
     if not match:
         file = next(
-            filter(lambda f: f.name.endswith(filename), folder.iterdir()),
+            filter(lambda f: f.stem.endswith(filename), folder.iterdir()),
             None,
         )
         if file:

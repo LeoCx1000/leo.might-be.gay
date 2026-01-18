@@ -252,10 +252,13 @@ def get_files_from(folder: Path):
         match = FILE_NAME_RE.fullmatch(file.name)
         if not match:
             continue
+        title = match.group("title")
+        if title.startswith("hidden-"):
+            continue
         year = folder.name
         month = match.group("month")
         day = match.group("day")
-        title = match.group("title")
+
         files.append(
             File(
                 date=f"{year}-{month}-{day}",

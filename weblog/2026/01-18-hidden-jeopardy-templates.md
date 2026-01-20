@@ -21,14 +21,26 @@ I've made some board templates for jeopardy games and spent quite a bit of time 
 ### Large Board Template
 - [JeopardyTemplate.pptm](https://leo.might-be.gay/JeopardyTemplate.pptm)
 
+*this board uses the Slide Master feature for the control panel buttons in each question (bottom-right)*
+
 ![Large Board Template](https://leo.might-be.gay/vaENnpRh.png)
 
 ### Large Board Template 2
 - [JeopardyTemplateLarge.pptm](https://leo.might-be.gay/JeopardyTemplateLarge.pptm)
+
+*this board **DOES NOT** use the Slide Master feature (coming soonTM)*
 
 ![Large Board Template 2](https://leo.might-be.gay/pN00RuK8.png)
 
 ### Small Board Template
 - [JeopardyTemplateShort.pptm](https://leo.might-be.gay/JeopardyTemplateShort.pptm)
 
+*this board **DOES NOT** use the Slide Master feature (coming soonTM)*
+
 ![Small Board Template](https://leo.might-be.gay/3g7Fg2SU.png)
+
+### How to use slide master
+
+The slide master is a feature that allows you to add things that appear in every slide. Some of my templates utilise this feature to add buttons and soundboards.
+
+![Slide Master](https://leo.might-be.gay/WhE3DOqK.png)

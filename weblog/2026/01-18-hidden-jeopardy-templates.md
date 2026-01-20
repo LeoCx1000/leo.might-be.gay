@@ -18,11 +18,17 @@ I've made some board templates for jeopardy games and spent quite a bit of time 
 
 # Template Downloads
 
-- [JeopardyTemplate.pptm](https://leo.might-be.gay/JeopardyTemplate.pptm)
-- [JeopardyTemplateShort.pptm](https://leo.might-be.gay/JeopardyTemplateShort.pptm)
-
 ### Large Board Template
+- [JeopardyTemplate.pptm](https://leo.might-be.gay/JeopardyTemplate.pptm)
+
 ![Large Board Template](https://leo.might-be.gay/vaENnpRh.png)
 
+### Large Board Template 2
+- [JeopardyTemplateLarge.pptm](https://leo.might-be.gay/pN00RuK8.png)
+
+![Large Board Template 2](https://leo.might-be.gay/pN00RuK8.png)
+
 ### Small Board Template
+- [JeopardyTemplateShort.pptm](https://leo.might-be.gay/JeopardyTemplateShort.pptm)
+
 ![Small Board Template](https://leo.might-be.gay/3g7Fg2SU.png)

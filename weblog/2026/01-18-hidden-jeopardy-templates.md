@@ -24,7 +24,7 @@ I've made some board templates for jeopardy games and spent quite a bit of time 
 ![Large Board Template](https://leo.might-be.gay/vaENnpRh.png)
 
 ### Large Board Template 2
-- [JeopardyTemplateLarge.pptm](https://leo.might-be.gay/pN00RuK8.png)
+- [JeopardyTemplateLarge.pptm](https://leo.might-be.gay/JeopardyTemplateLarge.pptm)
 
 ![Large Board Template 2](https://leo.might-be.gay/pN00RuK8.png)
 

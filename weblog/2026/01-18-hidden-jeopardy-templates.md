@@ -2,6 +2,19 @@
 
 I've made some board templates for jeopardy games and spent quite a bit of time and effort into making them good for the host and players. And so, I decided to release them publicly. 
 
+### I don't have PowerPoint, what now?
+
+You can get powerpoint for free using the MassGrave activation scripts at [massgrave.dev](https://massgrave.dev/), here's a quick guide:
+
+1. Open PowerShell (not cmd)
+2. Run the command on the website
+3. On the new window that appeared, use the interface to activate office:
+    1. Press `2` to select `Ohook`
+    - If you have office downloaded, press `2` 
+    - If you don't, press `3`
+4. Enjoy free powerpoint
+ 
+
 # A few words of caution
 - ⚠️ These boards use Microsoft Visual Basic code to operate the scoreboards, so these don't work on Google Sheets.
 - ⚠️ The wheel button uses a camera, so be careful as to not show your own camera if you have not set up OBS properly. (note that there is a failsafe slide with a "Show Camera" button to avoid this)

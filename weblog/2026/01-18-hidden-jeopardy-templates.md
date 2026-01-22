@@ -18,11 +18,11 @@ You can get powerpoint for free using the MassGrave activation scripts at [massg
 - ⚠️ These boards use Microsoft Visual Basic code to operate the scoreboards, so these don't work on Google Sheets.
 - ⚠️ The wheel button uses a camera, so be careful as to not show your own camera if you have not set up OBS properly. (note that there is a failsafe slide with a "Show Camera" button to avoid this)
 
-# <p style="color: red; font-weight: bold">⚠️ PowerPoint is giving me a security warning! How do I fix this?</p>
+# ⚠️ PowerPoint is giving me a security warning! How do I fix this?
 
 As I mentioned in the words of caution, this board used VB Code to make the score trackers function. This obviously is blocked by Microsoft, and for good reason! Please check this article here, or click on **Learn More** on the security warning to learn how to unblock the file:
 
-https://support.microsoft.com/en-gb/topic/a-potentially-dangerous-macro-has-been-blocked-0952faa0-37e7-4316-b61d-5b5ed6024216
+[https://support.microsoft.com/en-gb/topic/a-potentially-dangerous-macro-has-been-blocked-0952faa0-37e7-4316-b61d-5b5ed6024216](https://support.microsoft.com/en-gb/topic/a-potentially-dangerous-macro-has-been-blocked-0952faa0-37e7-4316-b61d-5b5ed6024216)
 
 
 # How to use them?

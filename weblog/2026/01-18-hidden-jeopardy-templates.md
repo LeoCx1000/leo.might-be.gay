@@ -13,11 +13,17 @@ You can get powerpoint for free using the MassGrave activation scripts at [massg
     - If you have office downloaded, press `2` 
     - If you don't, press `3`
 4. Enjoy free powerpoint
- 
 
 # A few words of caution
 - ⚠️ These boards use Microsoft Visual Basic code to operate the scoreboards, so these don't work on Google Sheets.
 - ⚠️ The wheel button uses a camera, so be careful as to not show your own camera if you have not set up OBS properly. (note that there is a failsafe slide with a "Show Camera" button to avoid this)
+
+# <p style="color: red; font-weight: bold">⚠️ PowerPoint is giving me a security warning! How do I fix this?</p>
+
+As I mentioned in the words of caution, this board used VB Code to make the score trackers function. This obviously is blocked by Microsoft, and for good reason! Please check this article here, or click on **Learn More** on the security warning to learn how to unblock the file:
+
+https://support.microsoft.com/en-gb/topic/a-potentially-dangerous-macro-has-been-blocked-0952faa0-37e7-4316-b61d-5b5ed6024216
+
 
 # How to use them?
 
@@ -25,7 +31,7 @@ You can get powerpoint for free using the MassGrave activation scripts at [massg
 
 2. To display the wheel I use [OBS Studio](https://obsproject.com/) and [a hardware camera emulator plugin for OBS](https://github.com/dev47apps/droidcam-obs-virtual-output) because PowerPoint doesn't support virtual cameras. (you need to start it every time you open OBS under `Tools > DroidCam Virtual Output`)
 
-3. Next to each price on the main board, you will find hidden buttons (they are just coloured the same as the background). Clicking them will select the amount of money to add or remove to/from players. You can also see your currently selected amount in the bottom-right.
+3. Next to each price on the main board, you will find **hidden buttons** (they are just coloured the same as the background). Clicking them will select the amount of money to add or remove to/from players. You can also see your currently selected amount in the bottom-right.
 
 4. Use the green/orange buttons to add/remove scores to/from the players.
 

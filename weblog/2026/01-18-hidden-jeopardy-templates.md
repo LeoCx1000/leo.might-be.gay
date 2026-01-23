@@ -1,5 +1,7 @@
 # My Jeopardy Templates
 
+### Enjoy my templates? [buy me a coffee](https://ko-fi.com/LeoCx1000)
+
 I've made some board templates for jeopardy games and spent quite a bit of time and effort into making them good for the host and players. And so, I decided to release them publicly. 
 
 ### I don't have PowerPoint, what now?
@@ -15,10 +17,10 @@ You can get powerpoint for free using the MassGrave activation scripts at [massg
 4. Enjoy free powerpoint
 
 # A few words of caution
-- ⚠️ These boards use Microsoft Visual Basic code to operate the scoreboards, so these don't work on Google Sheets.
-- ⚠️ The wheel button uses a camera, so be careful as to not show your own camera if you have not set up OBS properly. (note that there is a failsafe slide with a "Show Camera" button to avoid this)
+- These boards use Microsoft Visual Basic code to operate the scoreboards, so these don't work on Google Sheets.
+- The wheel button uses a camera, so be careful as to not show your own camera if you have not set up OBS properly. (note that there is a failsafe slide with a "Show Camera" button to avoid this)
 
-# ⚠️ PowerPoint is giving me a security warning! How do I fix this?
+# PowerPoint is giving me a security warning! How do I fix this?
 
 As I mentioned in the words of caution, this board used VB Code to make the score trackers function. This obviously is blocked by Microsoft, and for good reason! Please check this article here, or click on **Learn More** on the security warning to learn how to unblock the file:
 

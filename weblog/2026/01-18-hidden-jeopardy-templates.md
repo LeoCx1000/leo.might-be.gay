@@ -1,10 +1,10 @@
 # My Jeopardy Templates
 
-### Enjoy my templates? [buy me a coffee](https://ko-fi.com/LeoCx1000)
+*Enjoy my templates? [buy me a coffee](https://ko-fi.com/LeoCx1000)*
 
 I've made some board templates for jeopardy games and spent quite a bit of time and effort into making them good for the host and players. And so, I decided to release them publicly. 
 
-### I don't have PowerPoint, what now?
+# How to "obtain" PowerPoint
 
 You can get powerpoint for free using the MassGrave activation scripts at [massgrave.dev](https://massgrave.dev/), here's a quick guide:
 
@@ -17,14 +17,16 @@ You can get powerpoint for free using the MassGrave activation scripts at [massg
 4. Enjoy free powerpoint
 
 # A few words of caution
+
 - These boards use Microsoft Visual Basic code to operate the scoreboards, so these don't work on Google Sheets.
+
 - The wheel button uses a camera, so be careful as to not show your own camera if you have not set up OBS properly. (note that there is a failsafe slide with a "Show Camera" button to avoid this)
 
 # PowerPoint is giving me a security warning! How do I fix this?
 
 As I mentioned in the words of caution, this board used VB Code to make the score trackers function. This obviously is blocked by Microsoft, and for good reason! Please check this article here, or click on **Learn More** on the security warning to learn how to unblock the file:
 
-[https://support.microsoft.com/en-gb/topic/a-potentially-dangerous-macro-has-been-blocked-0952faa0-37e7-4316-b61d-5b5ed6024216](https://support.microsoft.com/en-gb/topic/a-potentially-dangerous-macro-has-been-blocked-0952faa0-37e7-4316-b61d-5b5ed6024216)
+from support.microsoft.com: [A potentially dangerous macro has been blocked](https://support.microsoft.com/en-gb/topic/a-potentially-dangerous-macro-has-been-blocked-0952faa0-37e7-4316-b61d-5b5ed6024216)
 
 
 # How to use them?
@@ -37,7 +39,39 @@ As I mentioned in the words of caution, this board used VB Code to make the scor
 
 4. Use the green/orange buttons to add/remove scores to/from the players.
 
+# Customizing the boards
+
+### The Design section
+
+To change colors, it is done under the design section, as follows:
+
+![Using the Design tab](https://leo.might-be.gay/z2OS2ORK.png)
+
+### How to use the Slide Master
+
+The slide master is a feature that allows you to add things that appear in every slide. Some of my templates utilise this feature to add buttons and soundboards.
+
+You can use this to **change the waiting sound**.
+
+![Slide Master](https://leo.might-be.gay/WhE3DOqK.png)
+
 # Template Downloads
+
+### Extra Small Board Template
+
+- [JeopardyTemplateXShort.pptm](https://leo.might-be.gay/JeopardyTemplateXShort.pptm)
+
+*this board uses the Slide Master feature for the control panel buttons in each question (bottom-right)*
+
+![Extra Small Board Template](https://leo.might-be.gay/VtzdgnGy.png)
+
+### Small Board Template
+- [JeopardyTemplateShort.pptm](https://leo.might-be.gay/JeopardyTemplateShort.pptm)
+
+*this board uses the Slide Master feature for the control panel buttons in each question (bottom-right)*
+
+![Small Board Template](https://leo.might-be.gay/3g7Fg2SU.png)
+
 
 ### Large Board Template
 - [JeopardyTemplate.pptm](https://leo.might-be.gay/JeopardyTemplate.pptm)
@@ -52,24 +86,3 @@ As I mentioned in the words of caution, this board used VB Code to make the scor
 *this board **DOES NOT** use the Slide Master feature (coming soonTM?)*
 
 ![Large Board Template 2](https://leo.might-be.gay/pN00RuK8.png)
-
-### Small Board Template
-- [JeopardyTemplateShort.pptm](https://leo.might-be.gay/JeopardyTemplateShort.pptm)
-
-*this board uses the Slide Master feature for the control panel buttons in each question (bottom-right)*
-
-![Small Board Template](https://leo.might-be.gay/3g7Fg2SU.png)
-
-### Extra Small Board Template
-
-- [JeopardyTemplateXShort.pptm](https://leo.might-be.gay/JeopardyTemplateXShort.pptm)
-
-*this board uses the Slide Master feature for the control panel buttons in each question (bottom-right)*
-
-![Extra Small Board Template](https://leo.might-be.gay/VtzdgnGy.png)
-
-### How to use slide master
-
-The slide master is a feature that allows you to add things that appear in every slide. Some of my templates utilise this feature to add buttons and soundboards.
-
-![Slide Master](https://leo.might-be.gay/WhE3DOqK.png)

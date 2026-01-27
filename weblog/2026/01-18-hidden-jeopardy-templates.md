@@ -1,5 +1,7 @@
 # My Jeopardy Templates
 
+==HEY! I want your best attempts at singing anime songs!== Shoot me a DM on discord with an audio file if you have any. (no singing skill needed)
+
 *Enjoy my templates? [buy me a coffee](https://ko-fi.com/LeoCx1000)*
 
 I've made some board templates for jeopardy games and spent quite a bit of time and effort into making them good for the host and players. And so, I decided to release them publicly. 
@@ -56,6 +58,8 @@ You can use this to **change the waiting sound**.
 ![Slide Master](https://leo.might-be.gay/WhE3DOqK.png)
 
 # Template Downloads
+
+==WARNING:== The `[question 2]` for 500 linked accidentally to the answer instead of the question. This has been **fixed** in the latest versions. (this has been fixed on 2025-JAN-26)
 
 ### Extra Small Board Template
 

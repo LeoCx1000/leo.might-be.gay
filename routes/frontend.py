@@ -15,11 +15,16 @@ from markupsafe import Markup
 import random
 import config
 import requests
+from mistune.util import escape as escape_text, striptags, safe_entity
 
 REPL = {"and": "&", "_": " "}
 PATTERN = re.compile("|".join(re.escape(k) for k in REPL), flags=re.IGNORECASE)
 LFM_LOGO = "<img src='/static/graphics/lastfm.svg' style='height:1em; vertical-align:middle; padding-bottom: 0.1em'/>"
 GALLERIES_FOLDER = Path("/www/files/gallery")
+
+COLLAPSABLE_SECTION_PATTERN = re.compile(
+    r"<p>\[(?P<summary>.*)\](?P<details>.*)<\/p>", flags=re.DOTALL
+)
 
 
 # Homepage
@@ -144,7 +149,7 @@ class GalleryFolder(NamedTuple):
     thumbnail: Image | None = None
 
 
-class CodeBlockRenderer(mistune.HTMLRenderer):
+class CustomRenderer(mistune.HTMLRenderer):
     def block_code(self, code: str, info: str | None = None) -> str:
         url = "http://127.0.0.1:39389/hltext"
         with requests.post(
@@ -154,11 +159,31 @@ class CodeBlockRenderer(mistune.HTMLRenderer):
         ) as req:
             return do_mark_safe(req.text)
 
+    def block_quote(self, text: str) -> str:
+        match = COLLAPSABLE_SECTION_PATTERN.match(text)
+        if match:
+            return f"<details><summary>{match.group('summary')}</summary>{match.group('details')}</details>"
+        else:
+            return super().block_quote(text)
+
+    def image(self, text: str, url: str, title: str | None = None) -> str:
+        if text == "@":
+            return self.video(url)
+        return super().image(text, url, title)
+
+    def video(self, url: str) -> str:
+        src = self.safe_url(url)
+        return f"""
+        <video controls>
+            <source src="{src}" type="video/mp4">
+        </video>
+        """
+
 
 markdown_renderer = mistune.create_markdown(
     escape=False,
     plugins=["strikethrough", "footnotes", "table", "speedup", "url", "mark"],
-    renderer=CodeBlockRenderer(),
+    renderer=CustomRenderer(),
 )
 
 

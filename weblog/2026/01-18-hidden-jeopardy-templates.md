@@ -8,17 +8,16 @@ I've made some board templates for jeopardy games and spent quite a bit of time 
 
 
 ## Don't have powerpoint?
-> [A piracy guide to PowerPoint]
-> 
-> You can get powerpoint for free using the MassGrave activation scripts at [massgrave.dev](https://massgrave.dev/), here's a quick guide:
-> 
-> 1. Open PowerShell (not cmd)
-> 2. Run the command on the website
-> 3. On the new window that appeared, use the interface to activate office:
->     1. Press `2` to select `Ohook`
->     - If you have office downloaded, press `2` 
->     - If you don't, press `3`
-> 4. Enjoy free powerpoint
+
+You can get powerpoint for free using the MassGrave activation scripts at [massgrave.dev](https://massgrave.dev/), here's a quick guide:
+
+1. Open PowerShell (not cmd)
+2. Run the command on the website
+3. On the new window that appeared, use the interface to activate office:
+   1. Press `2` to select `Ohook`
+      - If you have office downloaded, press `2` 
+      - If you don't, press `3`
+      - 4. Enjoy free powerpoint
 
 # A few words of caution
 

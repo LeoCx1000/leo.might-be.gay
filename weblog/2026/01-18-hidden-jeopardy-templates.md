@@ -25,12 +25,15 @@ You can get powerpoint for free using the MassGrave activation scripts at [massg
 
 - The wheel button uses a camera, so be careful as to not show your own camera if you have not set up OBS properly. (note that there is a failsafe slide with a "Show Camera" button to avoid this)
 
-# PowerPoint is giving me a security warning! How do I fix this?
+# The points buttons are not working!!!
 
 As I mentioned in the words of caution, this board used VB Code to make the score trackers function. This obviously is blocked by Microsoft, and for good reason! Please check this article here, or click on **Learn More** on the security warning to learn how to unblock the file:
 
 from support.microsoft.com: [A potentially dangerous macro has been blocked](https://support.microsoft.com/en-gb/topic/a-potentially-dangerous-macro-has-been-blocked-0952faa0-37e7-4316-b61d-5b5ed6024216)
 
+### Still not working after the security warning is dismissed?
+
+Are you using the invisible buttons? see the next section:
 
 # How to use them?
 

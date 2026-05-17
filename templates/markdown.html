@@ -1,0 +1,12 @@
+{% extends "common/page.html" %}
+
+{% block head %}
+<link href="/static/styles/code.css" rel="stylesheet" />
+<link href="/static/styles/weblog.css" rel="stylesheet" />
+{%endblock%}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+{{super()}}
+{%endblock%}

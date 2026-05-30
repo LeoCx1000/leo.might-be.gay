@@ -76,6 +76,7 @@ The slide master is a feature that allows you to add things that appear in every
 
 # Template Downloads
 
+==IMPORTANT: Due to a PowerPoint limitation, the slide with the table of links (slide 1) should always stay as slide 1. Adding slides before it will break the code and make the points tally not work.==
 
 ### Extra Small Board Template
 

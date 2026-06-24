@@ -31,7 +31,7 @@
 
 {% block body %}
 <section class="detect-checkbox">
-    <h2>Viewing <b class="dashed">{{ filename }}</b> (<a href="/{{filename}}">view raw</a>) </h2>
+    <h2>Viewing <b class="dashed">{{ filename }}</b> (<a href="{{filename}}">view raw</a>) </h2>
     <input type="checkbox" id="text-wrap"><span>toggle line wrap.</span>
     {{ html | safe }}
     <p>Generated with <a href="https://shiki.style/">shiki.js</a>.</p>

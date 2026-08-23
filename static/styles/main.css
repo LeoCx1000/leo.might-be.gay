@@ -163,3 +163,11 @@ img {
 video {
     max-width: 100%;
 }
+.birthday {
+    text-shadow: 0 0 10px chocolate;
+    color: chartreuse;
+}
+.birthday::after {
+    content: " (as of today!)";     
+    
+}

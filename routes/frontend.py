@@ -1,21 +1,21 @@
 import asyncio
-import os
+import random
 import re
+from collections.abc import Mapping
 from datetime import date
 from pathlib import Path
-from typing import Any, Mapping, NamedTuple
+from typing import Any, NamedTuple
 
 import aiohttp
 import mistune
+import requests
 from jinja2.filters import do_mark_safe
 from litestar import MediaType, Request, Router, get
 from litestar.exceptions import HTTPException
-from litestar.response import ServerSentEvent, Template, Redirect
+from litestar.response import Redirect, ServerSentEvent, Template
 from markupsafe import Markup
-import random
+
 import config
-import requests
-from mistune.util import escape as escape_text, striptags, safe_entity
 
 REPL = {"and": "&", "_": " "}
 PATTERN = re.compile("|".join(re.escape(k) for k in REPL), flags=re.IGNORECASE)
@@ -154,7 +154,7 @@ class CustomRenderer(mistune.HTMLRenderer):
         url = "http://127.0.0.1:39389/hltext"
         with requests.post(
             url,
-            json=dict(code=code.rstrip(), lang=info or "txt"),
+            json={"code": code.rstrip(), "lang": info or "txt"},
             headers={"Content-Type": "application/json"},
         ) as req:
             return do_mark_safe(req.text)
@@ -223,13 +223,13 @@ async def get_folder(folder_name: str) -> Template:
 
     return Template(
         "gallery.html",
-        context=dict(
-            images=get_images_from_folder(folder),
-            folder=GalleryFolder(
+        context={
+            "images": get_images_from_folder(folder),
+            "folder": GalleryFolder(
                 name=folder_name,
                 readme_html=make_readme(folder),
             ),
-        ),
+        },
     )
 
 
@@ -244,7 +244,7 @@ def gallery(request: Request) -> Template:
         for folder in sorted(GALLERIES_FOLDER.iterdir(), key=lambda i: i.name)
         if folder.is_dir()
     ]
-    return Template("galleries_index.html", context=dict(folders=folders))
+    return Template("galleries_index.html", context={"folders": folders})
 
 
 # Weblog
@@ -312,7 +312,7 @@ def weblog() -> Template:
             folders.append(WeblogFolder(year=folder.name, files=files))
 
     print(folders)
-    return Template("weblog_index.html", context=dict(folders=folders))
+    return Template("weblog_index.html", context={"folders": folders})
 
 
 @get("/weblog/{location:path}")
@@ -329,9 +329,9 @@ async def single_weblog(request: Request, location: str) -> Template | Redirect:
     if not sep:
         return Template(
             "weblog_index.html",
-            context=dict(
-                folders=[WeblogFolder(year=year, files=get_files_from(folder))]
-            ),
+            context={
+                "folders": [WeblogFolder(year=year, files=get_files_from(folder))]
+            },
         )
 
     match = FILE_NAME_RE.fullmatch(filename)

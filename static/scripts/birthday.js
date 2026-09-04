@@ -19,7 +19,7 @@ function shoot(x) {
 
 let now = new Date()
 
-if (now.getUTCDay() == 5 && now.getUTCMonth() == 9) {
+if (now.getUTCDate() == 5 && now.getUTCMonth() == 8) {
     let age = document.getElementById("age")
     if (age) {
         age.classList.add('birthday')

@@ -27,8 +27,8 @@ class Links(Enum):
     godot = Link("https://godotengine.org/", "Godot")
     python = Link("https://www.python.org/", "Python")
     source = Link("https://github.com/leocx1000/leo.might-be.gay", "source")
-    mistune = Link("https://htmx.org/", "mistune")
-    htmx = Link("https://pypi.org/project/mistune/", "htmx")
+    mistune = Link("https://pypi.org/project/mistune/", "mistune")
+    htmx = Link("https://htmx.org/", "htmx")
 
     # These are for when templating HTML as {{links.home()}} for example:
 

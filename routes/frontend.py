@@ -179,6 +179,15 @@ class CustomRenderer(mistune.HTMLRenderer):
         </video>
         """
 
+    def block_html(self, html: str) -> str:
+        if html.strip() == "<section>":
+            return "</section><section>"
+        return super().block_html(html)
+
+    def paragraph(self, text: str) -> str:
+
+        return super().paragraph(text)
+
 
 markdown_renderer = mistune.create_markdown(
     escape=False,
@@ -195,7 +204,7 @@ def make_readme(folder: Path):
     file = folder / "README.md"
     if not file.exists() or not file.is_file():
         return do_mark_safe("")
-    return render_markdown(file.read_text())
+    return render_markdown(file.read_text(encoding="utf-8"))
 
 
 def get_images_from_folder(folder: Path, sort: bool = True):
@@ -377,7 +386,7 @@ async def single_weblog(request: Request, location: str) -> Template | Redirect:
     return Template(
         "weblog.html",
         context={
-            "content": render_markdown(file.read_text()),
+            "content": render_markdown(file.read_text(encoding="utf-8")),
             "file": File(
                 date=f"{year}-{month}-{day}",
                 month=month,

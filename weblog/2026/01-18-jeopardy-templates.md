@@ -1,13 +1,13 @@
 # My Jeopardy Templates
 
-==HEY! I want your best attempts at singing anime songs!== Shoot me a DM on discord with an audio file if you have any. (no singing skill needed)
-
 *Enjoy my templates? [buy me a coffee](https://ko-fi.com/LeoCx1000)*
 
 I've made some board templates for jeopardy games and spent quite a bit of time and effort into making them good for the host and players. And so, I decided to release them publicly. 
 
+<section>
 
-## Don't have powerpoint?
+# Pirating PowerPoint
+
 
 You can get powerpoint for free using the MassGrave activation scripts at [massgrave.dev](https://massgrave.dev/), here's a quick guide:
 
@@ -19,11 +19,15 @@ You can get powerpoint for free using the MassGrave activation scripts at [massg
       - If you don't, press `3`
       - 4. Enjoy free powerpoint
 
+<section>
+
 # A few words of caution
 
 - These boards use Microsoft Visual Basic code to operate the scoreboards, so these don't work on Google Sheets.
 
 - The wheel button uses a camera, so be careful as to not show your own camera if you have not set up OBS properly. (note that there is a failsafe slide with a "Show Camera" button to avoid this)
+
+<section>
 
 # The points buttons are not working!!!
 
@@ -34,6 +38,8 @@ from support.microsoft.com: [A potentially dangerous macro has been blocked](htt
 ### Still not working after the security warning is dismissed?
 
 Are you using the invisible buttons? see the next section:
+
+<section>
 
 # How to use them?
 
@@ -50,8 +56,13 @@ Are you using the invisible buttons? see the next section:
 
    >[Video guide for hosting this board] ![@](https://leo.might-be.gay/board-guide-hosting-the-board.mp4) 
 
+<section>
 
 # Customizing the boards
+
+### Adding a category
+
+If you want to add (or remove) a category, there are some things to take into consideration because of the way the board is set up (especially repositioning the hidden buttons), so I recorded a quick video of me doing that:
 
 >[Video guide for adding a new category / column] ![@](https://leo.might-be.gay/board-guide-new-category.mp4) 
 
@@ -59,47 +70,56 @@ Are you using the invisible buttons? see the next section:
 
 You can use the design tab to recolor and restyle the board to your liking. For example, changing **the color of each question button** both before/after clicking. 
 
-
-> [Image guide to recolor links] ![Design Tab Image Guide](https://leo.might-be.gay/z2OS2ORK.png)
-
 > [Video guide to recolor links] ![@](https://leo.might-be.gay/board-guide-recolor.mp4)
 
-
+> [Video guide to recolor links] ![Design Tab Image Guide](https://leo.might-be.gay/z2OS2ORK.png)
 
 ### How to use the Slide Master
 
-The slide master is a feature that allows you to add things that appear in every slide. Some of my templates utilise this feature to add buttons and soundboards. You can use this to **change the waiting sound**.
+The slide master is a feature that allows you to add things that appear in every slide. Some of my templates utilise this feature to add buttons and soundboards. You can use this to **change the waiting sound** or add any other thing that you want to persist across different slides.
 
 > [Image guide for slide master] ![Slide Master](https://leo.might-be.gay/WhE3DOqK.png)
 
 > [Video guide for slide master] ![@](https://leo.might-be.gay/board-guide-slidemaster.mp4)
 
+PS: Some of the videos might be slightly out of date but they should generally represent the use cases.
+
+<section>
+
 # Template Downloads
 
-==IMPORTANT: Due to a PowerPoint limitation, the slide with the table of links (slide 1) should always stay as slide 1. Adding slides before it will break the code and make the points tally not work.==
+==IMPORTANT:== Due to a PowerPoint limitation, the slide with the table of links (slide 1) should always stay as slide 1. Adding slides before it will break the code and make the points tally not work.
 
-### Extra Small Board Template
+==**You CAN send a DM for help with using these templates, but only *after reading this entire website* since it has some guides on how to do common things.**==
 
-[JeopardyTemplateXShort.pptm](https://leo.might-be.gay/JeopardyTemplateXShort.pptm) *SM
+## Extra Small Board Template
 
-> [Image Preview] ![Extra Small Board Template](https://leo.might-be.gay/VtzdgnGy.png)
+Download: [JeopardyTemplateXShort.pptm](https://leo.might-be.gay/JeopardyTemplateXShort.pptm)
 
+*this template utilises the "Slide Master" feature for (a) each question/answer's buttons, and (b) the scoreboard. Click* ⚙️ *to edit player names*
 
-### Small Board Template
-- [JeopardyTemplateShort.pptm](https://leo.might-be.gay/JeopardyTemplateShort.pptm) *SM
+![Extra Small Board Template](https://leo.might-be.gay/rxwD67SY.png)
 
+## Small Board Template
 
-> [Image Preview] ![Small Board Template](https://leo.might-be.gay/3g7Fg2SU.png)
+Download: [JeopardyTemplateShort.pptm](https://leo.might-be.gay/JeopardyTemplateShort.pptm)
 
+*this template utilises the "Slide Master" feature for (a) each question/answer's buttons, and (b) the scoreboard. Click* ⚙️ *to edit player names*
 
-### Large Board Template
-- [JeopardyTemplate.pptm](https://leo.might-be.gay/JeopardyTemplate.pptm) *SM
+![Small Board Template](https://leo.might-be.gay/rxwD67SY.png)
 
-> [Image Preview] ![Large Board Template](https://leo.might-be.gay/vaENnpRh.png)
+## Large Board Template
 
-### Large Board Template 2
-- [JeopardyTemplateLarge.pptm](https://leo.might-be.gay/JeopardyTemplateLarge.pptm)
+Download: [JeopardyTemplate.pptm](https://leo.might-be.gay/JeopardyTemplate.pptm)
 
-> [Image Preview]  ![Large Board Template 2](https://leo.might-be.gay/pN00RuK8.png)
+*this template utilises the "Slide Master" feature for (a) each question/answer's buttons, and (b) the scoreboard. Click* ⚙️ *to edit player names*
 
-==*SM== = boards that use the Slide Master feature for the buttons on the bottom right.
+![Large Board Template](https://leo.might-be.gay/j4eJXl4l.png)
+
+## Large Board Template 2
+
+*this template utilises the "Slide Master" feature for (a) each question/answer's buttons, and (b) the scoreboard. Click* ⚙️ *to edit player names*
+
+Download: [JeopardyTemplateLarge.pptm](https://leo.might-be.gay/JeopardyTemplateLarge.pptm)
+
+![Large Board Template 2](https://leo.might-be.gay/Zd40GRGq.png)
